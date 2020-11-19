@@ -11,4 +11,5 @@ typedef struct{
 #define Categ(K) (K).Kategori
 #define Harga(K) (K).Harga
 
+void CreateComponent(Komponen* K, char* merek, char* categ, int price);
 #endif
