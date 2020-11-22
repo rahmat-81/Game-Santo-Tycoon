@@ -1,11 +1,12 @@
 #ifndef POINT_H
 #define POINT_H
-
+#include "mesinkata.h"
 #include "boolean.h"
 
+
 typedef struct {
-	float X; /* absis   */
-	float Y; /* ordinat */
+	int X; /* absis   */
+	int Y; /* ordinat */
 } POINT;
 
 /* *** Notasi Akses: Selektor POINT *** */
@@ -14,7 +15,7 @@ typedef struct {
 
 /* *** DEFINISI PROTOTIPE PRIMITIF *** */
 /* *** Konstruktor membentuk POINT *** */
-POINT MakePOINT (float X, float Y);
+POINT MakePOINT (int X, int Y);
 /* Membentuk sebuah POINT dari komponen-komponennya */
 
 /* *** KELOMPOK Interaksi dengan I/O device, BACA/TULIS  *** */
@@ -81,4 +82,11 @@ void GeserKeSbY (POINT *P);
 /* Proses : P digeser ke sumbu Y. */
 /* Contoh : Jika koordinat semula (9,9), maka menjadi (0,9) */
 
+POINT BacaFileMasukinkePoint ();
+
+int ChartoInt(char C);
+
+int BacaJumlahGedung ();
+
+void MembuatGedung(int JumlahGedung,POINT (*B),POINT (*S),POINT (*CC1));
 #endif

@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <math.h>
 #include "point.h"
+#include "mesinkata.h"
 
-POINT MakePOINT (float X, float Y){
+POINT MakePOINT (int X, int Y){
     POINT pp;
     pp.X = X;
     pp.Y = Y;
@@ -10,13 +11,13 @@ POINT MakePOINT (float X, float Y){
 }
 
 void BacaPOINT (POINT * P) {
-    float x,y;
-    scanf("%f %f", &x, &y);
+    int x,y;
+    scanf("%d %d", &x, &y);
     *P = MakePOINT(x,y);
 }
 
 void TulisPOINT (POINT P){
-    printf("(%.2f,%.2f)", P.X, P.Y);
+    printf("(%d,%d)", P.X, P.Y);
 }
 
 boolean EQ (POINT p1, POINT p2){
@@ -90,3 +91,27 @@ void GeserKeSbX (POINT *P){
 void GeserKeSbY (POINT *P){
     P->X = 0;
 }
+
+int ChartoInt(char C){
+    if (C=='0'){
+        return 0;
+    }
+    else {
+        return 1;
+    }
+    
+}
+POINT BacaFileMasukinkePoint (){
+    SalinKataPoint();
+    return(MakePOINT(ChartoInt(CKata.TabKata[1]),ChartoInt(CKata.TabKata[2])));
+}
+
+int BacaJumlahGedung(){
+    return (ChartoInt(CC));
+}
+
+void MembuatGedung(int JumlahGedung,POINT (*B),POINT (*S),POINT (*CC1)){
+    (*B)=BacaFileMasukinkePoint();
+    (*S)=BacaFileMasukinkePoint();
+    (*CC1) = BacaFileMasukinkePoint();
+    }
