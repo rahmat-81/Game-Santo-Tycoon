@@ -1,6 +1,7 @@
 #include "mesinkata.h"
 boolean EndKata;
 Kata CKata;
+char Choice[100];
 
 void IgnoreBlank() {
 /* Mengabaikan satu atau beberapa BLANK
@@ -34,4 +35,13 @@ void SalinKataPoint(){
     while (i<3);
     CKata.Length=i;
     ADV();
+}
+
+void ReadChoice(){
+    printf("ENTER COMMAND:");
+    scanf("%s\n",Choice);    
+}
+
+void PrintChoice(){
+    printf("%s",Choice);
 }

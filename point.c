@@ -93,13 +93,7 @@ void GeserKeSbY (POINT *P){
 }
 
 int ChartoInt(char C){
-    if (C=='0'){
-        return 0;
-    }
-    else {
-        return 1;
-    }
-    
+    return (C-'0');
 }
 POINT BacaFileMasukinkePoint (){
     SalinKataPoint();

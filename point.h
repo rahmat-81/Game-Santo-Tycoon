@@ -2,6 +2,8 @@
 #define POINT_H
 #include "mesinkata.h"
 #include "boolean.h"
+extern int JumlahGedung;
+
 
 
 typedef struct {

@@ -3,8 +3,5 @@
 #include "point.h"
 #include "stdio.h"
 #include "stdlib.h"
-#include "start.h"
 
-int main(){
-    StartGame();
-    return 0;}
+void StartGame();

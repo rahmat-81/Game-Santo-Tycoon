@@ -12,6 +12,7 @@ int Length;
 /* State Mesin Kata */
 extern boolean EndKata;
 extern Kata CKata;
+extern char Choice[100];
 
 void IgnoreBlank();
 /* Mengabaikan satu atau beberapa BLANK
@@ -35,4 +36,9 @@ I.S.: CC adalah karakter pertama dari kata
 F.S.: CKata berisi kata yang sudah diakuisisi;
 CC = BLANK atau CC = MARK;
 CC adalah karakter sesudah karakter terakhir yang diakuisisi */
+
+void ReadChoice();
+
+void PrintChoice();
+
 #endif
