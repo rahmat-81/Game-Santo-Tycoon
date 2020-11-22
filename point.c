@@ -112,9 +112,6 @@ int BacaJumlahGedung(){
 
 void MembuatGedung(int JumlahGedung,POINT (*B),POINT (*S),POINT (*CC1)){
     (*B)=BacaFileMasukinkePoint();
-    ADV();
     (*S)=BacaFileMasukinkePoint();
-    ADV();
     (*CC1) = BacaFileMasukinkePoint();
-    ADV();
     }
