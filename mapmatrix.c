@@ -113,5 +113,5 @@ void SetMapElement(MATRIX* M, int i, int j, char el)
 /* I.S. IsIdxValid(i,j) */
 /* F.S. Elemen matriks pada indeks i,j akan menjadi X */ 
 {
-    Elmt(*M, i, j) = el;
+    Elmt(*M, NBrsEff(*M)-i, j) = el;
 }
