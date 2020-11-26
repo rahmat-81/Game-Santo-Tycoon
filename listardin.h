@@ -1,11 +1,12 @@
 #ifndef __DYNAMIC_LIST__
 #define __DYNAMIC_LIST__
 #include "boolean.h"
+#include "komponen.h"
 
 #define InitialSize 100
 
 typedef int IdxType;
-typedef int ElType;
+typedef Komponen ElType;
 typedef struct {
     ElType *A;
     int Capacity;
