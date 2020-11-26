@@ -2,6 +2,7 @@
 #include "mesinkar.h"
 
 char CC;
+char Choice[100];
 boolean EOP;
 static FILE *pita;
 static int retval;
@@ -21,3 +22,4 @@ void ADV() {
     fclose(pita);
 }
 }
+

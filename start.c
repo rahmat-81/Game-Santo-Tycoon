@@ -4,7 +4,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "start.h"
-extern POINT B,S,CC1;
+
 int JumlahGedung;
 POINT B,S,CC1;
 void StartGame(){
