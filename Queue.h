@@ -2,10 +2,11 @@
 #define queue_H
 #include "boolean.h"
 #include <stdlib.h>
+#include "order.h"
 #define Nil -1
 
 
-typedef int infotype;
+typedef Order infotype;
 typedef int address;
 
 typedef struct {

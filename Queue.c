@@ -69,13 +69,8 @@ void Dequeue(Queue *Q, infotype *X) {
             Tail(*Q) = Nil;
         }
         else{
-            i = Head(*Q);
-
-            while(i < Tail(*Q)){
-                Q->T[i] = Q->T[i+1];
-                i++;
-            }
-            Tail(*Q)--;
+            Head(*Q)++;
+            
         }
     }
 }
