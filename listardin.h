@@ -49,5 +49,10 @@ void InsertLast(List *list, ElType el);
 void InsertFirst(List *list, ElType el);
 /* Fungsi untuk menambahkan elemen baru di awal list.
    Prekondisi: list terdefinisi */
+
+IdxType DoesComponentExist(List list, ElType komponen);
+/* fungsi yang mengembalikan indeks dari komponen pada list, jika ada/ */
+/* I.S. list mungkin kosong */
+/* F.S. jika komponen ditemukan, indeks dari komponen tersebut menjadi parameter output. Jika tidak ditemukan, return -1 */
  
 #endif

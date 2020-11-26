@@ -92,9 +92,37 @@ void InsertAt(List *list, ElType el, IdxType i)
     for (int a = length - 1; a >= i; a--) {
         list->A[a + 1] = list->A[a];
     }
+    /* analisis kondisi dimana elemen komponen sudah ada, tinggal menambahkan jumlah */
+    
+    IdxType where = DoesComponentExist(*list, el); /* mencari indeks komponen */
 
-    list->A[i] = el;
-    list->Neff++;
+    if (where != -1){
+        /* ditemukan komponen yang sama dengan yg ingin di insert */
+        Jumlah(list->A[where]) += Jumlah(el);
+    } else {
+        list->A[i] = el;
+        list->Neff++;
+    }
 }
 
+IdxType DoesComponentExist(List list, ElType komponen)
+/* fungsi yang mengembalikan indeks dari komponen pada list, jika ada/ */
+/* I.S. list mungkin kosong */
+/* F.S. jika komponen ditemukan, indeks dari komponen tersebut menjadi parameter output. Jika tidak ditemukan, return -1 */
+{
+    IdxType idxfound = 0;
+    boolean found = false;
+    while((idxfound < Length(list) && !found)){
+        if (Nama(list.A[idxfound]) == Nama(komponen)){
+            found = true;
+        } else {
+            idxfound++;
+        }
+    }
+    if (found){
+        return idxfound;
+    } else {
+        return -1;
+    }
+}
 
