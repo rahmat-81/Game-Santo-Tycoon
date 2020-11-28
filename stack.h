@@ -61,6 +61,11 @@ void InverseStack(Stack *S);
 /* I.S. S terdefinisi */
 /* F.S. Isi S terbalik dari posisi semula */
 
+void CopyStack (Stack Sin, Stack Sout);
+/* Membuat salinan Sin */
+/* I.S. Sin terdefinisi, Sout sembarang */
+/* F.S. Sout berisi salinan Sin yang identik */
+
 void PrintStack (Stack S);
 /* I.S. S terdefinisi, mungkin kosong */ 
 /* F.S. Isi S tertulis di layar dari bottom ke top (hasil inverse). */ 
