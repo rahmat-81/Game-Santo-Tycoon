@@ -87,6 +87,27 @@ void InverseStack (Stack *S)
     }
 }
 
+
+void CopyStack (Stack Sin, Stack Sout)
+/* Membuat salinan Sin */
+/* I.S. Sin terdefinisi, Sout sembarang */
+/* F.S. Sout berisi salinan Sin yang identik */
+{
+    infotype X;
+
+    while (!IsEmpty(Sin))
+    {
+        Pop(&Sin, &X);
+        Push(&Sout, X);
+    }
+    while (!IsEmpty(Sout))
+    {
+        Pop(&Sout, &X);
+        Push(&Sin, X);  
+    }
+}
+
+
 void PrintStack (Stack S)
 /* I.S. S terdefinisi, mungkin kosong */ 
 /* F.S. Isi S tertulis di layar dari bottom ke top (hasil inverse). */ 
@@ -94,12 +115,14 @@ void PrintStack (Stack S)
 /* Jika S kosong, tuliskan “Stack kosong” */ 
 {
     infotype X;
-    InverseStack(&S);
-    while (!IsEmpty(S))
+    Stack Stemp;
+    CopyStack (S, Stemp);
+    InverseStack(&Stemp);
+    while (!IsEmpty(Stemp))
     {
-        Pop(&S, &X);
+        Pop(&Stemp, &X);
         printf("%d", X);
     }
-    InverseStack(&S);
 }
+
 
