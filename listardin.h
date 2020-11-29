@@ -55,4 +55,9 @@ IdxType DoesComponentExist(List list, ElType komponen);
 /* I.S. list mungkin kosong */
 /* F.S. jika komponen ditemukan, indeks dari komponen tersebut menjadi parameter output. Jika tidak ditemukan, return -1 */
  
+void PrintList(List L);
+/* mencetak isi list */
+
+void DeleteComponent(List* L, ElType X);
+/* menghapus komponen list */
 #endif

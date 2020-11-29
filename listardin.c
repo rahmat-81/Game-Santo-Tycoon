@@ -126,3 +126,44 @@ IdxType DoesComponentExist(List list, ElType komponen)
     }
 }
 
+void PrintList(List L)
+{
+    int i = 1;
+    int idx = 0;
+    if(L.Neff > 0){
+        for(idx; idx < L.Neff; idx++){
+            printf("%d. %s\n", i, Nama(Get(L, idx)));
+        }
+    } else {
+        printf("Kosong\n");
+    }
+}
+
+void DeleteComponent(List* L, ElType X)
+/* menghapus komponen list */
+{
+    int i = 0;
+    int where = DoesComponentExist(*L, X);
+    if (where != -1){
+        /* komponen ada di list */
+        if (where == L->Neff-1){
+            /* ditemukan di indeks terakhir */
+            if(Jumlah(Get(*L, where)) < 2){
+            L->Neff--;
+            } else {
+                Jumlah(L->A[where]) -= 1;
+            }
+        } else {
+            /* ditemukan di tengah atau awal */
+            if(Jumlah(Get(*L, where)) < 2){
+                Jumlah(L->A[where]) -= 1;
+            } else {            
+                for(where; where < L->Neff-1; where++){
+                    /* geser rata kiri */
+                    L->A[where] = L->A[where+1];
+                }
+            }
+        }
+    }
+
+}
