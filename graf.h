@@ -1,9 +1,10 @@
-#ifndef _GRAPH_H
-#define _GRAPH_H
+#ifndef _GRAF_H
+#define _GRAF_H
 
 #define Nil NULL
 
 #include "boolean.h"
+#include "mapmatrix.h"
 typedef struct{
     int NBVertex; /* jumlah node pada matrix */
     int** Edges;
@@ -35,5 +36,6 @@ void NeighborsList(AdjacencyMATRIX G, int Vertex);
 void PrintGraph(AdjacencyMATRIX G);
 /* mencetak matriks graf */
 
+AdjacencyMATRIX ConvertMatrixToGraph(MATRIX M);
 
 #endif
