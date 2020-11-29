@@ -1,4 +1,7 @@
 #include "mesinkata.h"
+#include "mesinkar.h"
+#include "point.h"
+#include "listdinamispoint.h"
 boolean EndKata;
 Kata CKata;
 
@@ -8,7 +11,17 @@ I.S.: CC sembarang
 F.S.: CC ≠ BLANK */
 /* Kamus Lokal */
 /* Algoritma */
-while (CC == BLANK) {
+while (CC == BLANK || CC =='\n') {
+ADV();
+} /* CC != BLANK */
+}
+void IgnoreBlink() {
+/* Mengabaikan satu atau beberapa BLANK
+I.S.: CC sembarang
+F.S.: CC ≠ BLANK */
+/* Kamus Lokal */
+/* Algoritma */
+while (CC == BLANK || CC =='\n') {
 ADV();
 } /* CC != BLANK */
 }
@@ -28,6 +41,7 @@ void SalinKataPoint(){
     do{
         CKata.TabKata[i]=CC;
         ADV();
+        IgnoreBlank();
         if (CC != BLANK){
         i++;}
     }
@@ -36,12 +50,7 @@ void SalinKataPoint(){
     ADV();
 }
 int ChartoInt(char C){
-    if (C=='0'){
-        return 0;
-    }
-    else {
-        return 1;
-    }
+    return (C-'0');
     
 }
 POINT BacaFileMasukinkePoint (){
@@ -53,8 +62,16 @@ int BacaJumlahGedung(){
     return (ChartoInt(CC));
 }
 
-void MembuatGedung(int JumlahGedung,POINT (*B),POINT (*S),POINT (*CC1)){
-    (*B)=BacaFileMasukinkePoint();
-    (*S)=BacaFileMasukinkePoint();
-    (*CC1) = BacaFileMasukinkePoint();
+void MembuatGedung(int JumlahGedung,ListPoint *list){
+    for(int i=0;i<JumlahGedung;i++){
+        InsertLastPoint(list,BacaFileMasukinkePoint());
     }
+    }
+
+int BacaJumlahBaris (){
+    return (ChartoInt(CC));
+}
+
+int BacaJumlahKolom (){
+    return (ChartoInt(CC));
+}

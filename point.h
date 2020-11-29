@@ -1,6 +1,5 @@
 #ifndef POINT_H
 #define POINT_H
-#include "mesinkata.h"
 #include "boolean.h"
 
 
@@ -82,11 +81,5 @@ void GeserKeSbY (POINT *P);
 /* Proses : P digeser ke sumbu Y. */
 /* Contoh : Jika koordinat semula (9,9), maka menjadi (0,9) */
 
-POINT BacaFileMasukinkePoint ();
 
-int ChartoInt(char C);
-
-int BacaJumlahGedung ();
-
-void MembuatGedung(int JumlahGedung,POINT (*B),POINT (*S),POINT (*CC1));
 #endif

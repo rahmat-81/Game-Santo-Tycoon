@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 #include "point.h"
-#include "mesinkata.h"
 
 POINT MakePOINT (int X, int Y){
     POINT pp;
@@ -92,26 +91,3 @@ void GeserKeSbY (POINT *P){
     P->X = 0;
 }
 
-int ChartoInt(char C){
-    if (C=='0'){
-        return 0;
-    }
-    else {
-        return 1;
-    }
-    
-}
-POINT BacaFileMasukinkePoint (){
-    SalinKataPoint();
-    return(MakePOINT(ChartoInt(CKata.TabKata[1]),ChartoInt(CKata.TabKata[2])));
-}
-
-int BacaJumlahGedung(){
-    return (ChartoInt(CC));
-}
-
-void MembuatGedung(int JumlahGedung,POINT (*B),POINT (*S),POINT (*CC1)){
-    (*B)=BacaFileMasukinkePoint();
-    (*S)=BacaFileMasukinkePoint();
-    (*CC1) = BacaFileMasukinkePoint();
-    }
