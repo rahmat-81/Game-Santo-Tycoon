@@ -5,15 +5,15 @@
 #include "komponen.h"
 #include "boolean.h"
 
-#define Nil 0
-#define MaxEl 10
+#define Nil -1
+#define MaxEl 8
 
 typedef Komponen infotype;
 typedef int address;
 
 typedef struct
 {
-    infotype T[MaxEl];
+    infotype* T;
     address TOP;
 } Stack;
 
@@ -24,16 +24,16 @@ typedef struct
 /* ********* Prototype ********* */
 
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty(Stack *S);
+void CreateEmptyStack(Stack *S);
 /* I.S. Sembarang */
 /* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
 /* Ciri stack kosong : TOP bernilai Nil */
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
-bool IsEmpty(Stack S);
+boolean IsStackEmpty(Stack S);
 /* Mengirim true jika Stack kosong*/
 /* Ciri stack kosong : TOP bernilai Nil */
-bool IsFull(Stack S);
+boolean IsStackFull(Stack S);
 /* Mengirim true jika stack S penuh */
 /* Ciri stack penuh : TOP bernilai MaxEl */
 
@@ -71,5 +71,8 @@ void PrintStack (Stack S);
 /* F.S. Isi S tertulis di layar dari bottom ke top (hasil inverse). */ 
 /* Di akhir penulisan, S kembali ke kondisi I.S. */ 
 /* Jika S kosong, tuliskan “Stack kosong” */ 
+
+int NBAssembled(Stack S);
+/* menunjukkan berapa banyak komponen yang terpasang */
 
 #endif

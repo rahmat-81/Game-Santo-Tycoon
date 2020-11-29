@@ -1,25 +1,27 @@
 
 #include "stack.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty(Stack *S){
+void CreateEmptyStack(Stack *S){
 /* I.S. Sembarang */
 /* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
 /* Ciri stack kosong : TOP bernilai Nil */
+    (*S).T = (infotype *) malloc(MaxEl * sizeof(infotype));
     (*S).TOP = Nil;
 }
 
-boolean IsEmpty(Stack S){
+boolean IsStackEmpty(Stack S){
 /* Mengirim true jika Stack kosong*/
 /* Ciri stack kosong : TOP bernilai Nil */
-    return ( (S).TOP == Nil);
+    return ((S).TOP == Nil);
 }
 
-boolean IsFull(Stack S){
+boolean IsStackFull(Stack S){
 /* Mengirim true jika stack S penuh */
 /* Ciri stack penuh : TOP bernilai MaxEl */
-    return ( (S).TOP == MaxEl);
+    return ((S).TOP == MaxEl-1);
 }
 
 /* ********** Operator Dasar Stack ********* */
@@ -27,9 +29,10 @@ void Push(Stack *S, infotype X){
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, S tidak penuh */
 /* F.S. X menjadi element TOP yang baru, TOP bertambah 1 */
-    if(!IsFull(*S)){
+    if(!IsStackFull(*S)){
+        int Top = S->TOP+1;
         ((*S).TOP)++;
-        (*S).T[(*S).TOP]=X; 
+        (*S).T[Top] = X; 
     }
 }
 
@@ -37,8 +40,9 @@ void Pop(Stack *S, infotype *X){
 /* Menghapus X dari Stack S. */
 /* I.S. S tidak kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
-    if(!IsEmpty(*S)){
-        *X = (*S).T[(*S).TOP];
+    if(!IsStackEmpty(*S)){
+        int Top = S->TOP;
+        *X = (*S).T[Top];
         ((*S).TOP)--;
     }
 }
@@ -58,14 +62,14 @@ void ForcePush(Stack *S, infotype X)
         infotype L;
         infotype del; // untuk menyimpan buangan elemen paling bawah
         // ALGORITMA
-        CreateEmpty(&Stemp);
-        if (IsFull(*S)){
+        CreateEmptyStack(&Stemp);
+        if (IsStackFull(*S)){
             while((*S).TOP != 0){
                 Pop(S, &L);
                 Push(&Stemp, L);
             }
             Pop(S, &del); //elemenpaling bawah
-            while(!IsEmpty(Stemp)){
+            while(!IsStackEmpty(Stemp)){
                 Pop(&Stemp, &L);
                 Push(S, L);
             }
@@ -79,7 +83,7 @@ void InverseStack (Stack *S)
 /* F.S. Isi S terbalik dari posisi semula */
 {
     infotype X;
-    if (!IsEmpty(*S))
+    if (!IsStackEmpty(*S))
     {
         Pop(S, &X);
         InverseStack(S);
@@ -95,12 +99,12 @@ void CopyStack (Stack Sin, Stack Sout)
 {
     infotype X;
 
-    while (!IsEmpty(Sin))
+    while (!IsStackEmpty(Sin))
     {
         Pop(&Sin, &X);
         Push(&Sout, X);
     }
-    while (!IsEmpty(Sout))
+    while (!IsStackEmpty(Sout))
     {
         Pop(&Sout, &X);
         Push(&Sin, X);  
@@ -116,13 +120,36 @@ void PrintStack (Stack S)
 {
     infotype X;
     Stack Stemp;
-    CopyStack (S, Stemp);
-    InverseStack(&Stemp);
-    while (!IsEmpty(Stemp))
-    {
-        Pop(&Stemp, &X);
-        printf("%d", X);
+    int i = 1; /* untuk nomor komponen */
+    if(IsStackEmpty(S)){
+        printf("Belum ada komponen yang terpasang.\n");
+    } else {
+        CopyStack (S, Stemp);
+        InverseStack(&Stemp);
+        while (!IsStackEmpty(Stemp))
+        {
+            Pop(&Stemp, &X);
+            printf(" %d. %s\n", i, Nama(X));
+            i++;
+        }
     }
 }
 
+int NBAssembled(Stack S)
+/* menunjukkan berapa banyak komponen yang terpasang */
+{
+    Stack STemp;
+    int count = 0;
+    infotype K;
+    if (!IsStackEmpty(S)){
+        CopyStack(S, STemp);
+        while (!IsStackEmpty(STemp)){
+            Pop(&STemp, &K);
+            count++;
+        }
+        return count;
+    } else {
+        return 0;
+    }
+}
 
