@@ -1,6 +1,7 @@
 #ifndef __MESINKATA1_H__
 #define __MESINKATA1_H__
 #include "mesinkar.h"
+#include "point.h"
 #define NMax 50
 #define BLANK ' '
 
@@ -35,4 +36,12 @@ I.S.: CC adalah karakter pertama dari kata
 F.S.: CKata berisi kata yang sudah diakuisisi;
 CC = BLANK atau CC = MARK;
 CC adalah karakter sesudah karakter terakhir yang diakuisisi */
+
+POINT BacaFileMasukinkePoint ();
+
+int ChartoInt(char C);
+
+int BacaJumlahGedung ();
+
+void MembuatGedung(int JumlahGedung,POINT (*B),POINT (*S),POINT (*CC1));
 #endif
