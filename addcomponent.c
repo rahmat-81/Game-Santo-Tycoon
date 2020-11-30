@@ -17,11 +17,6 @@ void AddComponent(Stack *S, List* Inventory){
         scanf("%d", &pilihan);
         printf("\n");
         pasang = Get(*Inventory, pilihan-1);
-
-        // jumlah = 2
-        // harga(beli) = 200
-        // 2 *200 < saldo?
-        // insertlast(inventory)
         while(Categ(pasang) != NBAssembled(*S) + 1){
             /* cek apakah komponen yang akan dipasang sudah sesuai urutan */
             printf("Komponen tidak kompatibel dengan urutannya! Pilih komponen sesuai urutan: ");
