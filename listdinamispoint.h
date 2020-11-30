@@ -1,5 +1,5 @@
-#ifndef __DYNAMIC_LIST__
-#define __DYNAMIC_LIST__
+#ifndef __DYNAMIC_LIST_POINT__
+#define __DYNAMIC_LIST_POINT__
 #include "boolean.h"
 #include "point.h"
 
