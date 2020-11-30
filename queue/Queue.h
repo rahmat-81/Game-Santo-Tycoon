@@ -22,8 +22,8 @@ typedef struct {
 #define InfoTail(Q) (Q).T[(Q).TAIL]
 #define MaxEl(Q) (Q).MaxEl
 
-boolean IsEmpty (Queue Q);
-boolean IsFull (Queue Q);
+boolean IsQEmpty (Queue Q);
+boolean IsQFull (Queue Q);
 int NBElmnt (Queue Q);
 void CreateEmpty (Queue *Q, int Max);
 void DeAlokasi (Queue *Q);

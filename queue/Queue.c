@@ -1,10 +1,10 @@
 #include "Queue.h"
 #include <stdio.h>
-boolean IsEmpty (Queue Q) {
+boolean IsQEmpty (Queue Q) {
     return (Head(Q) == Nil && Tail(Q) == Nil);
 }
 
-boolean IsFull (Queue Q) {
+boolean IsQFull (Queue Q) {
     return (MaxEl(Q) == NBElmnt(Q));
 }
 
@@ -13,7 +13,7 @@ int NBElmnt (Queue Q) {
     address i;
     int counter;
     //Algoritma   
-    if (IsEmpty(Q)){
+    if (IsQEmpty(Q)){
         return 0;
     }
     else {
@@ -42,8 +42,8 @@ void Dealokasi(Queue *Q){
 
 
 void Enqueue(Queue *Q, infotype X) {
-    if (!IsFull(*Q)){    
-        if (IsEmpty(*Q)){
+    if (!IsQFull(*Q)){    
+        if (IsQEmpty(*Q)){
             Head(*Q) = 0;
             Tail(*Q) = 0;
             InfoHead(*Q) = X;
@@ -62,7 +62,7 @@ void Dequeue(Queue *Q, infotype *X) {
     address i;
     //Algoritma
     
-    if (!IsEmpty(*Q)){
+    if (!IsQEmpty(*Q)){
         *X = InfoHead(*Q);  
         if (Head(*Q) == Tail(*Q)){
             Head(*Q) = Nil;
