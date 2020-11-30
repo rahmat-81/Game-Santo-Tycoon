@@ -38,15 +38,15 @@ int GetCapacity(List list);
 /* Fungsi untuk mendapatkan kapasitas yang tersedia.
    Prekondisi: list terdefinisi */
 
-void InsertAt(List *list, ElType el, IdxType i);
+void InsertAt(List *list, ElType el, IdxType i, int jumlah);
 /* Fungsi untuk menambahkan elemen baru di index ke-i
    Prekondisi: list terdefinisi, i di antara 0..Length(list). */
 
-void InsertLast(List *list, ElType el);
+void InsertLast(List *list, ElType el, int jumlah);
 /* Fungsi untuk menambahkan elemen baru di akhir list.
    Prekondisi: list terdefinisi */
 
-void InsertFirst(List *list, ElType el);
+void InsertFirst(List *list, ElType el, int jumlah);
 /* Fungsi untuk menambahkan elemen baru di awal list.
    Prekondisi: list terdefinisi */
 

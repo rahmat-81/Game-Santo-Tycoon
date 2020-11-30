@@ -55,22 +55,22 @@ int GetCapacity(List list)
 }
 
 
-void InsertFirst(List *list, ElType el) 
+void InsertFirst(List *list, ElType el, int jumlah) 
 /* Fungsi untuk menambahkan elemen baru di awal list.
    Prekondisi: list terdefinisi */
 {
-    InsertAt(list, el, 0);
+    InsertAt(list, el, 0, jumlah);
 }
 
-void InsertLast(List *list, ElType el) 
+void InsertLast(List *list, ElType el, int jumlah) 
 /* Fungsi untuk menambahkan elemen baru di akhir list.
    Prekondisi: list terdefinisi */
 {
     int insertAt = Length(*list);
-    InsertAt(list, el, insertAt);
+    InsertAt(list, el, insertAt, jumlah);
 }
 
-void InsertAt(List *list, ElType el, IdxType i) 
+void InsertAt(List *list, ElType el, IdxType i, int jumlah) 
 /* Fungsi untuk menambahkan elemen baru di index ke-i
    Prekondisi: list terdefinisi, i di antara 0..Length(list). */
 {
@@ -98,9 +98,10 @@ void InsertAt(List *list, ElType el, IdxType i)
 
     if (where != -1){
         /* ditemukan komponen yang sama dengan yg ingin di insert */
-        Jumlah(list->A[where]) += Jumlah(el);
+        Jumlah(list->A[where]) += jumlah;
     } else {
         list->A[i] = el;
+        Jumlah(list->A[i]) = jumlah;
         list->Neff++;
     }
 }
@@ -128,11 +129,20 @@ IdxType DoesComponentExist(List list, ElType komponen)
 
 void PrintList(List L)
 {
-    int i = 1;
-    int idx = 0;
-    if(L.Neff > 0){
-        for(idx; idx < L.Neff; idx++){
-            printf("%d. %s\n", i, Nama(Get(L, idx)));
+    // int i = 1;
+    // int idx = 0;
+    // if(L.Neff > 0){
+    //     for(idx; idx < L.Neff; idx++){
+    //         printf("%d. %s\n", i, Nama(Get(L, idx)));
+    //     }
+    // } else {
+    //     printf("Kosong\n");
+    // }
+    IdxType iteration = 0;
+    if(Length(L) != 0){
+        while(iteration < Length(L)){
+            printf("%d. %s (%d)\n", iteration+1, Nama(L.A[iteration]), Jumlah(L.A[iteration]));
+            iteration++;
         }
     } else {
         printf("Kosong\n");
@@ -155,13 +165,14 @@ void DeleteComponent(List* L, ElType X)
             }
         } else {
             /* ditemukan di tengah atau awal */
-            if(Jumlah(Get(*L, where)) < 2){
+            if(Jumlah(Get(*L, where)) >= 2){
                 Jumlah(L->A[where]) -= 1;
             } else {            
                 for(where; where < L->Neff-1; where++){
                     /* geser rata kiri */
                     L->A[where] = L->A[where+1];
                 }
+                L->Neff--;
             }
         }
     }
