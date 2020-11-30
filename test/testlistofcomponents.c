@@ -28,30 +28,30 @@ int main(){
         printf("Inventory masih kosong nih\n");
     }
 
-    InsertLast(&Inventory, mobo);
-    InsertLast(&Inventory, cpu);
-    InsertLast(&Inventory, ram);
-    InsertLast(&Inventory, cooler);
-    InsertLast(&Inventory, casing);
-    InsertLast(&Inventory, gpu);
-    InsertLast(&Inventory, ssd);
-    InsertLast(&Inventory, ssd);
-    InsertLast(&Inventory, psu);
-    InsertLast(&Inventory, build);
+    InsertLast(&Inventory, mobo, Jumlah(mobo));
+    InsertLast(&Inventory, cpu, Jumlah(cpu));
+    InsertLast(&Inventory, ram, Jumlah(ram));
+    InsertLast(&Inventory, cooler, Jumlah(cooler));
+    InsertLast(&Inventory, casing, Jumlah(casing));
+    InsertLast(&Inventory, gpu, Jumlah(gpu));
+    InsertLast(&Inventory, ssd, Jumlah(ssd));
+    InsertLast(&Inventory, psu, Jumlah(psu));
+    InsertLast(&Inventory, build, Jumlah(build));
 
     printf("ada %d komponen\n", Length(Inventory));
+    PrintList(Inventory);
 
-    if(Length(Inventory) != 0){
-        while(iteration < Length(Inventory)){
-            printf("%d. %s (%d)\n", iteration+1, Nama(Get(Inventory, iteration)), Jumlah(Get(Inventory, iteration)));
-            iteration++;
-        }
-    } else {
-        printf("Gagal gus masukin ke list :(\n");
-    }
+    // if(Length(Inventory) != 0){
+    //     while(iteration < Length(Inventory)){
+    //         printf("%d. %s (%d)\n", iteration+1, Nama(Get(Inventory, iteration)), Jumlah(Get(Inventory, iteration)));
+    //         iteration++;
+    //     }
+    // } else {
+    //     printf("Gagal gus masukin ke list :(\n");
+    // }
 
     /* komponen duplikat */
-    InsertLast(&Inventory, mobo2);
+    InsertLast(&Inventory, mobo2, Jumlah(mobo2));
     printf("ada %d komponen\n", Length(Inventory));
 
     IdxType iteration2 = 0;

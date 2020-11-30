@@ -20,8 +20,9 @@ void AddComponent(Stack *S, List* Inventory){
         while(Categ(pasang) != Top(*S)+1){
             /* cek apakah komponen yang akan dipasang sudah sesuai urutan */
             printf("Komponen tidak kompatibel dengan urutannya! Pilih komponen sesuai urutan: ");
-            scanf("%d", &pilihan);
+            scanf("%d", &pilihan); 
             pasang = Get(*Inventory, pilihan-1);
+            // kalo gapunya inventory?
         }
         printf("\n");
         Push(S, pasang);
