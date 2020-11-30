@@ -3,6 +3,7 @@
 #include "point.h"
 #include "listdinamispoint.h"
 #include "mapmatrix.h"
+
 boolean EndKata;
 Kata CKata;
 
@@ -16,24 +17,9 @@ while (CC == BLANK || CC =='\n') {
 ADV();
 } /* CC != BLANK */
 }
-void IgnoreBlink() {
-/* Mengabaikan satu atau beberapa BLANK
-I.S.: CC sembarang
-F.S.: CC ≠ BLANK */
-/* Kamus Lokal */
-/* Algoritma */
-while (CC == BLANK || CC =='\n') {
-ADV();
-} /* CC != BLANK */
-}
 
 void INITAKSES(){
     START();
-    IgnoreBlank();
-}
-
-void ADVKATA(){
-    SalinKataPoint(); 
     IgnoreBlank();
 }
 
@@ -107,5 +93,30 @@ void BacaFilekeMatriks(int JumlahGedung, MATRIX *M){
             }
             
         }
+    }
+}
+
+Kata BacaKataDariCLI(){
+   Kata C;
+    char cc;
+    scanf("%c",&cc);
+    int i=0;
+    while (cc != '\n'){
+        C.TabKata[i]=cc;
+        i++;
+        scanf("%c",&cc);
+    }
+    C.Length=i;
+    return C;
+}
+
+boolean isSamaKata(Kata Kata1, Kata Kata2){
+    if (Kata1.Length==Kata2.Length){
+        for (int i=0;i<Kata1.Length;i++){
+            if (Kata1.TabKata[i] != Kata2.TabKata[i]){
+                return false;
+            }
+        }
+        return true;
     }
 }

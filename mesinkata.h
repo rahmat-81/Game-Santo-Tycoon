@@ -4,6 +4,8 @@
 #include "point.h"
 #include "listdinamispoint.h"
 #include "mapmatrix.h"
+#include "stdlib.h"
+#include "stdio.h"
 #define NMax 50
 #define BLANK ' '
 
@@ -15,6 +17,7 @@ int Length;
 /* State Mesin Kata */
 extern boolean EndKata;
 extern Kata CKata;
+extern Kata MOVE,STATUS,CHECKORDER,STARTBUILD,FINISHBUILD,ADDCOMPONENT,REMOVECOMPONENT,SHOP,DELIVER,END_DAY,MAP,EXIT;
 
 void IgnoreBlank();
 /* Mengabaikan satu atau beberapa BLANK
@@ -53,4 +56,6 @@ int BacaJumlahGedung ();
 
 void MembuatGedung(int JumlahGedung,ListPoint *list);
 void BacaFilekeMatriks(int JumlahGedung, MATRIX *M);
+Kata BacaKataDariCLI();
+boolean isSamaKata(Kata Kata1, Kata Kata2);
 #endif

@@ -5,24 +5,34 @@
 #include "stdlib.h"
 #include "listdinamispoint.h"
 #include "mapmatrix.h"
+#include "command.h"
 
 int main(){
+    InsisiasiCommand();
     START();
     int NB = BacaInteger();
-    printf("%d\n",NB);
     ADV();
     int NK =BacaInteger();
-    printf("%d\n",NK);
     IgnoreBlank();
     int JumlahGedung=BacaInteger();
     ADVNEW();
-    printf("%d\n",JumlahGedung);
     ListPoint listpoint=MakeListPoint(JumlahGedung);
     MembuatGedung(JumlahGedung,&listpoint);
-    printf("%d\n",CC);
-    PrintListPoint(listpoint);
     MATRIX Graf;
     BacaFilekeMatriks(JumlahGedung,&Graf);
     PrintMap(Graf);
+    printf("\n");
+    
+
+    boolean endgame=false;
+    Kata CCommand;
+    while (endgame==false){
+        CCommand=BacaKataDariCLI();
+        if (isSamaKata(CCommand,FINISHBUILD)){
+                printf("%s",CCommand.TabKata);
+            
+            endgame=true;
+        }
+    } 
     return 0;
 }
