@@ -4,6 +4,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "listdinamispoint.h"
+#include "mapmatrix.h"
 
 int main(){
     START();
@@ -18,6 +19,10 @@ int main(){
     printf("%d\n",JumlahGedung);
     ListPoint listpoint=MakeListPoint(JumlahGedung);
     MembuatGedung(JumlahGedung,&listpoint);
+    printf("%d\n",CC);
     PrintListPoint(listpoint);
+    MATRIX Graf;
+    BacaFilekeMatriks(JumlahGedung,&Graf);
+    PrintMap(Graf);
     return 0;
 }

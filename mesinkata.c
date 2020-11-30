@@ -2,6 +2,7 @@
 #include "mesinkar.h"
 #include "point.h"
 #include "listdinamispoint.h"
+#include "mapmatrix.h"
 boolean EndKata;
 Kata CKata;
 
@@ -83,9 +84,7 @@ void MembuatGedung(int JumlahGedung,ListPoint *list){
         ADV();
         int y=BacaInteger();
         InsertLastPoint(list,MakePOINT(x,y));
-        if (j!=JumlahGedung-1){
-            ADVNEW();
-        }
+        ADVNEW();
     }
     }
 
@@ -95,4 +94,18 @@ int BacaJumlahBaris (){
 
 int BacaJumlahKolom (){
     return (ChartoInt(CC));
+}
+void BacaFilekeMatriks(int JumlahGedung, MATRIX *M){
+    MakeMATRIX(JumlahGedung, JumlahGedung, M);
+    indeks i, j;
+    for(i=0; i<JumlahGedung ;i++){
+        for(j=0; j<JumlahGedung; j++){
+            char el = CC;
+            Elmt(*M, i, j) = el;
+            if (j!= JumlahGedung-1 && j!= JumlahGedung-1){
+                ADVNEW();
+            }
+            
+        }
+    }
 }

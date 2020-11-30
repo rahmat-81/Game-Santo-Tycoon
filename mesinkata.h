@@ -3,6 +3,7 @@
 #include "mesinkar.h"
 #include "point.h"
 #include "listdinamispoint.h"
+#include "mapmatrix.h"
 #define NMax 50
 #define BLANK ' '
 
@@ -51,4 +52,5 @@ int ChartoInt(char C);
 int BacaJumlahGedung ();
 
 void MembuatGedung(int JumlahGedung,ListPoint *list);
+void BacaFilekeMatriks(int JumlahGedung, MATRIX *M);
 #endif
