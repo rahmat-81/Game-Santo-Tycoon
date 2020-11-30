@@ -51,7 +51,7 @@ void Shop (List* shop, List* Inventory, int saldo)
         else 
         {   
             // menambahkan komponen baru
-            InsertAt (List* Inventory, ElType* komponen, int jumlah);
+            InsertLast (List* Inventory, ElType* komponen, int jumlah);
         }
         printf("Komponen berhasil dibeli!")
     }
