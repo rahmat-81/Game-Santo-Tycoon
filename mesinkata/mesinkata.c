@@ -112,11 +112,23 @@ Kata BacaKataDariCLI(){
 
 boolean isSamaKata(Kata Kata1, Kata Kata2){
     if (Kata1.Length==Kata2.Length){
-        for (int i=0;i<Kata1.Length;i++){
-            if (Kata1.TabKata[i] != Kata2.TabKata[i]){
-                return false;
-            }
-        }
-        return true;
+       int i=0;
+       boolean found=false;
+       while (i < Kata1.Length && (!found)){
+           if (Kata1.TabKata[i] != Kata2.TabKata[i]){
+               found=true;
+           }
+           i++;
+       }
+       if (found){
+           return false;
+       }
+       else {
+           return true;
+       }
+       
+    }
+    else{
+        return false;
     }
 }

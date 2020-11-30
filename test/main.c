@@ -28,9 +28,8 @@ int main(){
     Kata CCommand;
     while (endgame==false){
         CCommand=BacaKataDariCLI();
-        if (isSamaKata(CCommand,FINISHBUILD)){
-                printf("%s",CCommand.TabKata);
-            
+        if (isSamaKata(CCommand,STARTBUILD)){
+            printf("%s",CCommand.TabKata);
             endgame=true;
         }
     } 
