@@ -105,7 +105,7 @@ AdjacencyMATRIX ConvertMatrixToGraph(MATRIX M)
 
     for(i = 0; i < NBrsEff(M); i++){
         for(j = 0; j < NKolEff(M); j++){
-            Edges(G,i,j) = atoi(Elmt(M,i,j)); /* ubah char jadi int */
+            Edges(G,i,j) = (Elmt(M,i,j)) - '0'; /* ubah char jadi int */
         }
     }
 }

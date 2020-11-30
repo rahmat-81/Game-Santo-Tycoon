@@ -31,7 +31,7 @@ Order GenerateOrder(List inventory, int JmlOrang)
         ElType RandomComponent;
         RandomComponent = Get(inventory, randint);
         TotalHarga += Harga(RandomComponent);
-        InsertLast(&pesanan, RandomComponent);
+        InsertLast(&pesanan, RandomComponent, Jumlah(RandomComponent));
     }
     int no_pemesan = rand()%JmlOrang + 1;
     int harga_pesanan = TotalHarga * 1.3; /* ambil keuntungan 30% setiap order */
