@@ -3,7 +3,7 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-#include "boolean.h"
+#include "../boolean/boolean.h"
 
 /* Ukuran minimum dan maksimum baris dan kolom */
 #define BrsMin 0

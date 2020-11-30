@@ -1,5 +1,5 @@
-#include "stdio.h"
-#include "mesinkar.h"
+#include <stdio.h>
+#include "../mesinkar/mesinkar.h"
 
 char CC;
 boolean EOP;

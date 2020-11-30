@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include "stack.h"
-#include "listardin.h"
+#include "../stack/stack.h"
+#include "../listdinamis/listardin.h"
 
 void AddComponent(Stack *S, List* Inventory){
     int pilihan; /* menyimpan pilihan */

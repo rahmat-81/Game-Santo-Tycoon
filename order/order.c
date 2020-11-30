@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "order.h"
-#include "listardin.h"
+#include "../order/order.h"
+#include "../listdinamis/listardin.h"
 #include<time.h>
 
 void CreateOrder(Order* O, int pemesan, List komponen, int invoice){

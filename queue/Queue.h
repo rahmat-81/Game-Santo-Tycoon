@@ -1,8 +1,8 @@
 #ifndef queue_H
 #define queue_H
-#include "boolean.h"
+#include "../boolean/boolean.h"
 #include <stdlib.h>
-#include "order.h"
+#include "../order/order.h"
 #define Nil -1
 
 

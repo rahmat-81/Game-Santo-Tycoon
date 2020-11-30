@@ -1,11 +1,11 @@
 #ifndef __MESINKATA1_H__
 #define __MESINKATA1_H__
-#include "mesinkar.h"
-#include "point.h"
-#include "listdinamispoint.h"
-#include "mapmatrix.h"
-#include "stdlib.h"
-#include "stdio.h"
+#include "../mesinkar/mesinkar.h"
+#include "../point/point.h"
+#include "../listdinamis/listdinamispoint.h"
+#include "../matrix/mapmatrix.h"
+#include <stdlib.h>
+#include <stdio.h>
 #define NMax 50
 #define BLANK ' '
 

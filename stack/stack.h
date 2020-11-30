@@ -2,7 +2,7 @@
 #ifndef stack_H
 #define stack_H
 #include <stdio.h>
-#include "komponen.h"
+#include "../komponen/komponen.h"
 #include "boolean.h"
 
 #define Nil 0

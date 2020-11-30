@@ -1,7 +1,7 @@
 #ifndef __DYNAMIC_LIST_POINT__
 #define __DYNAMIC_LIST_POINT__
-#include "boolean.h"
-#include "point.h"
+#include "../boolean/boolean.h"
+#include "../point/point.h"
 
 
 

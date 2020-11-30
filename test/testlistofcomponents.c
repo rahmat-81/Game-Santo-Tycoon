@@ -1,6 +1,6 @@
 #include<stdio.h>
-#include "listardin.h"
-#include "komponen.h"
+#include "../listdinamis/listardin.h"
+#include "../komponen/komponen.h"
 #include<stdlib.h>
 
 

@@ -1,8 +1,8 @@
 #include "mesinkata.h"
-#include "mesinkar.h"
-#include "point.h"
+#include "../mesinkar/mesinkar.h"
+#include "../point/point.h"
 #include "listdinamispoint.h"
-#include "mapmatrix.h"
+#include "../matrix/mapmatrix.h"
 
 boolean EndKata;
 Kata CKata;

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <math.h>
-#include "point.h"
+#include "../point/point.h"
 
 POINT MakePOINT (int X, int Y){
     POINT pp;

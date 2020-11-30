@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include "mapmatrix.h"
+#include "../matrix/mapmatrix.h"
 
 int main(){
     MATRIX M;

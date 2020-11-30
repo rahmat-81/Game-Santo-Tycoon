@@ -1,11 +1,11 @@
-#include "mesinkar.h"
-#include "mesinkata.h"
-#include "point.h"
+#include "../mesinkar/mesinkar.h"
+#include "../mesinkata/mesinkata.h"
+#include "../point/point.h"
 #include "stdio.h"
 #include "stdlib.h"
-#include "listdinamispoint.h"
-#include "mapmatrix.h"
-#include "command.h"
+#include "../listdinamis/listdinamispoint.h"
+#include "../matrix/mapmatrix.h"
+#include "../command/command.h"
 
 int main(){
     InsisiasiCommand();

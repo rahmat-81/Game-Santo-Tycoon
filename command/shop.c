@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include "stack.h"
-#include "listardin.h"
+#include "../stack/stack.h"
+#include "../listdinamis/listardin.h"
 
 void Shop (List* shop, List* Inventory, int saldo)
 {
@@ -46,7 +46,7 @@ void Shop (List* shop, List* Inventory, int saldo)
         /* komponen sudah ada di inventory */
         {
             // menambahkan komponen yang sudah ada
-            Jumlah(komponen) = Jumlah(komponen) + jumlah;
+            Jumlah(komponen) = Jumlah(komponen) + jumlah; /* coba di tes, jalan ato ngga */
         }
         else 
         {   

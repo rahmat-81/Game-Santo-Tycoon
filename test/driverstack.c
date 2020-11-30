@@ -1,8 +1,8 @@
 #include<stdio.h>
-#include"stack.h"
-#include "listardin.h"
-#include "komponen.h"
-#include "addcomponent.c"
+#include"../stack/stack.h"
+#include "../listdinamis/listardin.h"
+#include "../komponen/komponen.h"
+#include "../command/addcomponent.c"
 
 int main()
 {

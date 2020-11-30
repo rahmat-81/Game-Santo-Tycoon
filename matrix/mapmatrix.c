@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "boolean.h"
+#include "../boolean/boolean.h"
 #include "mapmatrix.h"
 
 /* ********** DEFINISI PROTOTIPE PRIMITIF ********** */              
