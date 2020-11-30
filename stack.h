@@ -5,7 +5,7 @@
 #include "komponen.h"
 #include "boolean.h"
 
-#define Nil -1
+#define Nil 0
 #define MaxEl 8
 
 typedef Komponen infotype;
@@ -20,6 +20,8 @@ typedef struct
 /* Definisi stack S kosong : S.TOP = Nil */
 /* S.TOP = jumlah element stack */
 /* S.T[S.TOP-1] = element paling atas */
+#define Top(S) (S).TOP
+#define InfoTop(S) (S).T[(S).TOP-1]
 
 /* ********* Prototype ********* */
 
@@ -61,7 +63,7 @@ void InverseStack(Stack *S);
 /* I.S. S terdefinisi */
 /* F.S. Isi S terbalik dari posisi semula */
 
-void CopyStack (Stack Sin, Stack Sout);
+void CopyStack (Stack Sin, Stack* Sout);
 /* Membuat salinan Sin */
 /* I.S. Sin terdefinisi, Sout sembarang */
 /* F.S. Sout berisi salinan Sin yang identik */
@@ -71,8 +73,5 @@ void PrintStack (Stack S);
 /* F.S. Isi S tertulis di layar dari bottom ke top (hasil inverse). */ 
 /* Di akhir penulisan, S kembali ke kondisi I.S. */ 
 /* Jika S kosong, tuliskan “Stack kosong” */ 
-
-int NBAssembled(Stack S);
-/* menunjukkan berapa banyak komponen yang terpasang */
 
 #endif

@@ -21,7 +21,7 @@ boolean IsStackEmpty(Stack S){
 boolean IsStackFull(Stack S){
 /* Mengirim true jika stack S penuh */
 /* Ciri stack penuh : TOP bernilai MaxEl */
-    return ((S).TOP == MaxEl-1);
+    return ((S).TOP == MaxEl);
 }
 
 /* ********** Operator Dasar Stack ********* */
@@ -30,9 +30,8 @@ void Push(Stack *S, infotype X){
 /* I.S. S mungkin kosong, S tidak penuh */
 /* F.S. X menjadi element TOP yang baru, TOP bertambah 1 */
     if(!IsStackFull(*S)){
-        int Top = S->TOP+1;
-        ((*S).TOP)++;
-        (*S).T[Top] = X; 
+        S->T[Top(*S)] = X;
+        Top(*S)++;
     }
 }
 
@@ -41,9 +40,8 @@ void Pop(Stack *S, infotype *X){
 /* I.S. S tidak kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
     if(!IsStackEmpty(*S)){
-        int Top = S->TOP;
-        *X = (*S).T[Top];
-        ((*S).TOP)--;
+        *X = InfoTop(*S);
+        Top(*S)--;
     }
 }
 
@@ -82,33 +80,36 @@ void InverseStack (Stack *S)
 /* I.S. S terdefinisi */
 /* F.S. Isi S terbalik dari posisi semula */
 {
+    Stack temp;
     infotype X;
-    if (!IsStackEmpty(*S))
-    {
+    CreateEmptyStack(&temp);
+    while(!IsStackEmpty(*S)){
         Pop(S, &X);
-        InverseStack(S);
-        Push(S, X);
+        Push(&temp, X);
     }
+    CopyStack(temp, S);
 }
 
 
-void CopyStack (Stack Sin, Stack Sout)
+void CopyStack (Stack Sin, Stack* Sout)
 /* Membuat salinan Sin */
 /* I.S. Sin terdefinisi, Sout sembarang */
 /* F.S. Sout berisi salinan Sin yang identik */
 {
+    Stack temp;
     infotype X;
+    CreateEmptyStack(&temp);
 
-    while (!IsStackEmpty(Sin))
-    {
+    while(!IsStackEmpty(Sin)){
         Pop(&Sin, &X);
-        Push(&Sout, X);
+        Push(&temp, X);
     }
-    while (!IsStackEmpty(Sout))
-    {
-        Pop(&Sout, &X);
-        Push(&Sin, X);  
+    CreateEmptyStack(Sout);
+    while(!IsStackEmpty(temp)){
+        Pop(&temp, &X);
+        Push(Sout, X);
     }
+
 }
 
 
@@ -124,7 +125,7 @@ void PrintStack (Stack S)
     if(IsStackEmpty(S)){
         printf("Belum ada komponen yang terpasang.\n");
     } else {
-        CopyStack (S, Stemp);
+        CopyStack (S, &Stemp);
         InverseStack(&Stemp);
         while (!IsStackEmpty(Stemp))
         {
@@ -135,21 +136,4 @@ void PrintStack (Stack S)
     }
 }
 
-int NBAssembled(Stack S)
-/* menunjukkan berapa banyak komponen yang terpasang */
-{
-    Stack STemp;
-    int count = 0;
-    infotype K;
-    if (!IsStackEmpty(S)){
-        CopyStack(S, STemp);
-        while (!IsStackEmpty(STemp)){
-            Pop(&STemp, &K);
-            count++;
-        }
-        return count;
-    } else {
-        return 0;
-    }
-}
 
