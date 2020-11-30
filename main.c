@@ -7,17 +7,14 @@
 
 int main(){
     START();
-    printf("%c\n",CC);
-    int NB = BacaJumlahBaris();
+    int NB = BacaInteger();
+    printf("%d\n",NB);
     ADV();
+    int NK =BacaInteger();
+    printf("%d\n",NK);
     IgnoreBlank();
-    int NK =BacaJumlahKolom();
-    printf("%c\n",CC);
-    ADV();
-    IgnoreBlank();
-    int JumlahGedung=BacaJumlahGedung();
-    ADV();
-    IgnoreBlank();
+    int JumlahGedung=BacaInteger();
+    ADVNEW();
     printf("%d\n",JumlahGedung);
     ListPoint listpoint=MakeListPoint(JumlahGedung);
     MembuatGedung(JumlahGedung,&listpoint);

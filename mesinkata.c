@@ -36,6 +36,19 @@ void ADVKATA(){
     IgnoreBlank();
 }
 
+void ADVNEW(){
+    ADV();
+    IgnoreBlank();
+}
+
+int BacaInteger(){
+    int i=0;
+    while(CC != BLANK && CC !='\n'){
+        i=i*10+ChartoInt(CC);
+        ADV();
+    }
+    return i;
+}
 void SalinKataPoint(){
     int i=0;
     do{
@@ -63,8 +76,16 @@ int BacaJumlahGedung(){
 }
 
 void MembuatGedung(int JumlahGedung,ListPoint *list){
-    for(int i=0;i<JumlahGedung;i++){
-        InsertLastPoint(list,BacaFileMasukinkePoint());
+    for(int j=0;j<JumlahGedung;j++){
+        int c=BacaInteger();
+        ADV();
+        int x=BacaInteger();
+        ADV();
+        int y=BacaInteger();
+        InsertLastPoint(list,MakePOINT(x,y));
+        if (j!=JumlahGedung-1){
+            ADVNEW();
+        }
     }
     }
 

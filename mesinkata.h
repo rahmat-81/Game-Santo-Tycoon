@@ -31,6 +31,8 @@ void ADVKATA();
 F.S.: CKata adalah kata terakhir yang sudah diakuisisi,
 CC adalah karakter pertama dari kata berikutnya, mungkin MARK
 Proses: Akuisisi kata menggunakan procedure SalinKata */
+void ADVNEW();
+int BacaInteger();
 void SalinKataPoint();
 /* Mengakuisisi kata, menyimpan dalam CKata
 I.S.: CC adalah karakter pertama dari kata
