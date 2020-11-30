@@ -17,10 +17,11 @@ void AddComponent(Stack *S, List* Inventory){
         scanf("%d", &pilihan);
         printf("\n");
         pasang = Get(*Inventory, pilihan-1);
-        while(Categ(pasang) != NBAssembled(*S) + 1){
+        while(Categ(pasang) != Top(*S)+1){
             /* cek apakah komponen yang akan dipasang sudah sesuai urutan */
             printf("Komponen tidak kompatibel dengan urutannya! Pilih komponen sesuai urutan: ");
             scanf("%d", &pilihan);
+            pasang = Get(*Inventory, pilihan-1);
         }
         printf("\n");
         Push(S, pasang);
@@ -28,7 +29,7 @@ void AddComponent(Stack *S, List* Inventory){
     } else {
         printf("Build sudah lengkap. Silakan lakukan finish build!\n");
     }
+}
 
     
 
-}
