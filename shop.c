@@ -20,12 +20,13 @@ void Shop (List* shop, List* Inventory, int saldo)
             while (iteration < Length(*shop))
             {
                 printf("%d. %s - $(%d)\n", iteration+1, Nama((*shop).A[iteration]), Harga((*shop).A[iteration])); 
+                iteration++;
             }
         }
     }
     else
     {
-        printf ("Toko sedang kosong"); 
+        printf ("Toko sedang kosong\n"); 
     }
 
     printf("Komponen yang ingin dibeli: ");
