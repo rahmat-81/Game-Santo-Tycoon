@@ -1,7 +1,7 @@
 #ifndef __DYNAMIC_LIST__
 #define __DYNAMIC_LIST__
-#include "boolean.h"
-#include "komponen.h"
+#include "../boolean/boolean.h"
+#include "../komponen/komponen.h"
 
 #define InitialSize 100
 
