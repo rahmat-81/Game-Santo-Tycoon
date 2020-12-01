@@ -60,4 +60,6 @@ void PrintList(List L);
 
 void DeleteComponent(List* L, ListEl X);
 /* menghapus komponen list */
+
+boolean DoesBuildExists(List *L, ListEl *X);
 #endif

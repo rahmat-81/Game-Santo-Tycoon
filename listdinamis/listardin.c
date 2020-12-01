@@ -178,3 +178,21 @@ void DeleteComponent(List* L, ListEl X)
     }
 
 }
+
+boolean DoesBuildExists(List *L, ListEl* X){
+    int i = 0;
+    boolean found = false;
+    while(i < L->Neff && !found){
+        if(Categ(L->A[i]) == 9){
+            found = true;
+        } else {
+            i++;
+        }
+    }
+    if(found){
+        *X = L->A[i];
+        return true;
+    } else {
+        return false;
+    }
+}
