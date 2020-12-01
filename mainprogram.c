@@ -13,7 +13,28 @@
 #include "queue/Queue.h"
 #include "stack/stack.h"
 
-// gcc -o testmain mainprogram.c graf/graf.c komponen/komponen.c listdinamis/listdinamispoint.c listdinamis/listardin.c matrix/mapmatrix.c mesinkata/mesinkata.c order/order.c point/point.c queue/Queue.c stack/stack.c
+
+// gcc -o testmain mainprogram.c graf/graf.c komponen/komponen.c listdinamis/listdinamispoint.c listdinamis/listardin.c matrix/mapmatrix.c mesinkata/mesinkata.c order/order.c point/point.c queue/Queue.c stack/stack.c mesinkar/mesinkar.c
+// command untuk compile ^
+
+char IntToChar(int i){
+    return i +'0';
+}
+void ListPointtoMatrix(ListPoint list, MATRIX *M){
+    for (int i=0;i<list.Neff;i++){
+        if (i==0){
+            SetMapElement(M,list.A[i].Y,list.A[i].X,'B');
+        }
+        else if (i==1){
+            SetMapElement(M,list.A[i].Y,list.A[i].X,'S');
+        }
+        else{
+            SetMapElement(M,list.A[i].Y,list.A[i].X,IntToChar(i-1));
+        }
+        
+    }
+
+}
 void CheckOrder(Queue Q) {
     //KAMUS LOKAL
     int i;
@@ -63,6 +84,11 @@ void Shop (List* shop, List* Inventory, int* saldo)
 
     printf("Komponen yang ingin dibeli: ");
     scanf("%d", &beli);
+    while(beli < 1 || beli > 40){
+        printf("Tolong pilih komponen yang tersedia di toko!\n");
+        printf("Komponen yang ingin dibeli: ");
+        scanf("%d", &beli);
+    }
     printf("\n");
     printf("Masukkan jumlah yang ingin dibeli: ");
     scanf("%d", &jumlah);
@@ -85,12 +111,12 @@ void Shop (List* shop, List* Inventory, int* saldo)
             // menambahkan komponen baru
             InsertLast(Inventory, komponen, jumlah);
         }
-        printf("Komponen berhasil dibeli!");
+        printf("Komponen berhasil dibeli!\n");
         *saldo -= totalharga;
     }
     else 
     {
-        printf ("Uang tidak cukup!");
+        printf ("Uang tidak cukup!\n");
     }
     
 }
@@ -107,18 +133,17 @@ void AddComponent(Stack *S, List* Inventory){
     if(!IsStackFull(*S)){
         printf("Komponen yang ingin dipasang: ");
         scanf("%d", &pilihan);
+        while(pilihan > Length(*Inventory) || pilihan < 1){
+            printf("Komponen tidak valid!\n");
+            printf("Komponen yang ingin dipasang: ");
+            scanf("%d", &pilihan);
+        }
         printf("\n");
         pasang = Get(*Inventory, pilihan-1);
-        // while(Categ(pasang) != Top(*S)+1){
-        //     /* cek apakah komponen yang akan dipasang sudah sesuai urutan */
-        //     printf("Komponen tidak kompatibel dengan urutannya! Pilih komponen sesuai urutan: ");
-        //     scanf("%d", &pilihan); 
-        //     pasang = Get(*Inventory, pilihan-1);
-        //     // kalo gapunya inventory?
-        // }
-        printf("\n");
+        Jumlah(pasang) = 1; /* supaya yang dipasang hanya 1 */
         Push(S, pasang);
         DeleteComponent(Inventory, pasang);
+        printf("Komponen berhasil di pasang!\n");
     } else {
         printf("Semua komponen telah terpasang. Silakan lakukan finish build!\n");
     }
@@ -248,13 +273,30 @@ void RemoveComponent(Stack *S, List* Inventory) {
 
 }
 
+void Deliver(POINT player, POINT customer, List* Inventory, Queue* Q){
+    if(Absis(player) == Absis(customer) && Ordinat(player) == Ordinat(customer)){
+        /* posisi player ada pada gedung pelanggan */
+        ListEl Build;
+        if(DoesBuildExists(Inventory, &Build)){
+            QInfo BuildCustomer;
+            Dequeue(Q, &BuildCustomer); /* dequeue orderan */
+            DeleteComponent(Inventory, Build);
+        } else {
+            printf("Anda belum memiliki build yang selesai, silakan selesaikan build terlebih dahulu\n");
+        }
+    } else {
+        printf("Anda belum berada di lokasi customer! Silakan lakukan command MOVE terlebih dahulu!\n");
+    }
+}
+
+
 
 int main(){
     List ShopList = CreateShopList();
     int SaldoPlayer = 10000;
     List PlayerInventory = MakeList();
-    Shop(&ShopList, &PlayerInventory, &SaldoPlayer);
-    PrintList(PlayerInventory);
-    printf("%d\n", SaldoPlayer);
+    Stack newBuild;
+    Queue queuepesanan;
+    int i = 0;
 }
 
