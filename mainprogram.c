@@ -327,6 +327,34 @@ void Status(int Saldo, Queue Order, List Inventory, POINT player, ListPoint Poin
     printf("Inventory anda:\n");
     PrintList(Inventory);
 }
+
+void FINISHBUILD(Stack Inventory, Order order){
+
+    Stack InventoryCheck;
+    Komponen X;
+    CopyStack(Inventory,&InventoryCheck);
+    if (IsStackEmpty(InventoryCheck)){
+        printf("Komponen yang dipasangkan belum sesuai dengan pesanan, build belum dapat diselesaikan.");
+    }
+    else{
+        int i=0;
+        boolean found=false;
+        while ((!IsStackEmpty(InventoryCheck))&& (!found)){
+            Pop(&InventoryCheck,&X);
+            if (X.NamaBarang != order.ListKomponen.A[i-7].NamaBarang){
+                found=true;
+            }
+            i++;
+        }
+        if (found){
+            printf("Komponen yang dipasangkan belum sesuai dengan pesanan, build belum dapat diselesaikan.");
+        }
+        else{
+            printf("Pesanan %d telah selesai. Silahkan antar ke pelanggan %d!",order.NoPesanan,order.Pemesan);
+        }
+    }
+    
+}
 /*
 int main(){
     List ShopList = CreateShopList();
