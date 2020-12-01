@@ -15,7 +15,7 @@ void CreateEmptyGraph(AdjacencyMATRIX *G)
 /* membuat graf kosong dengan implementasi adjaacency matrix */
 {
     NBVertex(*G) = 0;
-    G->Edges = Nil;
+    G->Edges = NULL;
 }
 
 void CreateGraph(AdjacencyMATRIX *G, int NbVertex)

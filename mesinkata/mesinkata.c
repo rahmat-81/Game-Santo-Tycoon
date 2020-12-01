@@ -1,7 +1,7 @@
 #include "mesinkata.h"
 #include "../mesinkar/mesinkar.h"
 #include "../point/point.h"
-#include "listdinamispoint.h"
+#include "../listdinamis/listdinamispoint.h"
 #include "../matrix/mapmatrix.h"
 
 boolean EndKata;

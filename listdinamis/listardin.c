@@ -8,7 +8,7 @@ List MakeList()
 {
     List list;
 
-    list.A = (ElType *) malloc(InitialSize * sizeof(ElType));
+    list.A = (ListEl *) malloc(InitialSize * sizeof(ListEl));
     list.Capacity = InitialSize;
     list.Neff = 0;
 
@@ -39,7 +39,7 @@ int Length(List list)
 }
 
 
-ElType Get(List list, IdxType i) 
+ListEl Get(List list, IdxType i) 
 /* Mengembalikan elemen list L yang ke-I (indeks lojik).
    Prekondisi: list tidak kosong, i di antara 0..Length(list). */
 {
@@ -55,14 +55,14 @@ int GetCapacity(List list)
 }
 
 
-void InsertFirst(List *list, ElType el, int jumlah) 
+void InsertFirst(List *list, ListEl el, int jumlah) 
 /* Fungsi untuk menambahkan elemen baru di awal list.
    Prekondisi: list terdefinisi */
 {
     InsertAt(list, el, 0, jumlah);
 }
 
-void InsertLast(List *list, ElType el, int jumlah) 
+void InsertLast(List *list, ListEl el, int jumlah) 
 /* Fungsi untuk menambahkan elemen baru di akhir list.
    Prekondisi: list terdefinisi */
 {
@@ -70,7 +70,7 @@ void InsertLast(List *list, ElType el, int jumlah)
     InsertAt(list, el, insertAt, jumlah);
 }
 
-void InsertAt(List *list, ElType el, IdxType i, int jumlah) 
+void InsertAt(List *list, ListEl el, IdxType i, int jumlah) 
 /* Fungsi untuk menambahkan elemen baru di index ke-i
    Prekondisi: list terdefinisi, i di antara 0..Length(list). */
 {
@@ -79,7 +79,7 @@ void InsertAt(List *list, ElType el, IdxType i, int jumlah)
 
     if (length == capacity) {
         int newCapacity = capacity + InitialSize;
-        ElType *array = (ElType *) malloc(newCapacity * sizeof(ElType));
+        ListEl *array = (ListEl *) malloc(newCapacity * sizeof(ListEl));
         for (int a = 0; a < length; a++) {
             array[a] = Get(*list, a);
         }
@@ -106,7 +106,7 @@ void InsertAt(List *list, ElType el, IdxType i, int jumlah)
     }
 }
 
-IdxType DoesComponentExist(List list, ElType komponen)
+IdxType DoesComponentExist(List list, ListEl komponen)
 /* fungsi yang mengembalikan indeks dari komponen pada list, jika ada/ */
 /* I.S. list mungkin kosong */
 /* F.S. jika komponen ditemukan, indeks dari komponen tersebut menjadi parameter output. Jika tidak ditemukan, return -1 */
@@ -149,7 +149,7 @@ void PrintList(List L)
     }
 }
 
-void DeleteComponent(List* L, ElType X)
+void DeleteComponent(List* L, ListEl X)
 /* menghapus komponen list */
 {
     int i = 0;

@@ -6,9 +6,9 @@
 /* *** Konstruktor/Kreator *** */
 void CreateEmptyStack(Stack *S){
 /* I.S. Sembarang */
-/* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
+/* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxStack */
 /* Ciri stack kosong : TOP bernilai Nil */
-    (*S).T = (infotype *) malloc(MaxEl * sizeof(infotype));
+    (*S).T = (infotype *) malloc(MaxStack * sizeof(infotype));
     (*S).TOP = Nil;
 }
 
@@ -20,8 +20,8 @@ boolean IsStackEmpty(Stack S){
 
 boolean IsStackFull(Stack S){
 /* Mengirim true jika stack S penuh */
-/* Ciri stack penuh : TOP bernilai MaxEl */
-    return ((S).TOP == MaxEl);
+/* Ciri stack penuh : TOP bernilai MaxStack */
+    return ((S).TOP == MaxStack);
 }
 
 /* ********** Operator Dasar Stack ********* */

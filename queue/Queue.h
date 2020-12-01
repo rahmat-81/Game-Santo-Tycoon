@@ -3,14 +3,14 @@
 #include "../boolean/boolean.h"
 #include <stdlib.h>
 #include "../order/order.h"
-#define Nil -1
+#define Invalid -1
 
 
-typedef Order infotype;
+typedef Order QInfo;
 typedef int address;
 
 typedef struct {
-    infotype *T;
+    QInfo *T;
     address HEAD;
     address TAIL;
     int MaxEl;
@@ -27,8 +27,8 @@ boolean IsQFull (Queue Q);
 int NBElmnt (Queue Q);
 void CreateEmpty (Queue *Q, int Max);
 void DeAlokasi (Queue *Q);
-void Enqueue (Queue * Q, infotype X);
-void Dequeue (Queue *Q, infotype* X);
+void Enqueue (Queue * Q, QInfo X);
+void Dequeue (Queue *Q, QInfo* X);
 
 
 

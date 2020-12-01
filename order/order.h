@@ -4,11 +4,13 @@
 #include "../listdinamis/listardin.h"
 
 typedef struct{
+    int NoPesanan;
     int Pemesan;
     List ListKomponen;
     int HargaInvoice;
 } Order;
 
+#define NomorOrder(O) (O).NoPesanan
 #define Pemesan(O) (O).Pemesan
 #define Invoice(O) (O).HargaInvoice
 #define ListKomponen(O) (O).ListKomponen

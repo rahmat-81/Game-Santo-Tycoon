@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include"../queue/Queue.h"
 #include "../listdinamis/listardin.h"
 #include "../komponen/komponen.h"

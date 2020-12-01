@@ -1,7 +1,7 @@
 #include "Queue.h"
 #include <stdio.h>
 boolean IsQEmpty (Queue Q) {
-    return (Head(Q) == Nil && Tail(Q) == Nil);
+    return (Head(Q) == Invalid && Tail(Q) == Invalid);
 }
 
 boolean IsQFull (Queue Q) {
@@ -26,10 +26,10 @@ int NBElmnt (Queue Q) {
 }
 
 void CreateEmpty(Queue *Q, int Max){
-    (*Q).T = (infotype *) malloc (Max * sizeof(infotype));
+    (*Q).T = (QInfo *) malloc (Max * sizeof(QInfo));
     if ((*Q).T != NULL){
-        Head(*Q) = Nil;
-        Tail(*Q) = Nil;
+        Head(*Q) = Invalid;
+        Tail(*Q) = Invalid;
         MaxEl(*Q) = Max;
     }
 }
@@ -41,7 +41,7 @@ void Dealokasi(Queue *Q){
 }
 
 
-void Enqueue(Queue *Q, infotype X) {
+void Enqueue(Queue *Q, QInfo X) {
     if (!IsQFull(*Q)){    
         if (IsQEmpty(*Q)){
             Head(*Q) = 0;
@@ -57,7 +57,7 @@ void Enqueue(Queue *Q, infotype X) {
 
 }
 
-void Dequeue(Queue *Q, infotype *X) {
+void Dequeue(Queue *Q, QInfo *X) {
     //Kamus
     address i;
     //Algoritma
@@ -65,8 +65,8 @@ void Dequeue(Queue *Q, infotype *X) {
     if (!IsQEmpty(*Q)){
         *X = InfoHead(*Q);  
         if (Head(*Q) == Tail(*Q)){
-            Head(*Q) = Nil;
-            Tail(*Q) = Nil;
+            Head(*Q) = Invalid;
+            Tail(*Q) = Invalid;
         }
         else{
             Head(*Q)++;

@@ -1,11 +1,19 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include "../listdinamis/listardin.h"
-#include "../komponen/komponen.h"
-#include "order.h"
-#include "../queue/Queue.h"
-// #include "../command/checkorder.c"
+#include "boolean/boolean.h"
+#include "graf/graf.h"
+#include "komponen/komponen.h"
+#include "listdinamis/listdinamispoint.h"
+#include "listdinamis/listardin.h"
+#include "matrix/mapmatrix.h"
+#include "mesinkata/mesinkata.h"
+#include "mesinkar/mesinkar.h"
+#include "order/order.h"
+#include "point/point.h"
+#include "queue/Queue.h"
+#include "stack/stack.h"
 
+// gcc -o testmain mainprogram.c graf/graf.c komponen/komponen.c listdinamis/listdinamispoint.c listdinamis/listardin.c matrix/mapmatrix.c mesinkata/mesinkata.c order/order.c point/point.c queue/Queue.c stack/stack.c
 void CheckOrder(Queue Q) {
     //KAMUS LOKAL
     int i;
@@ -27,7 +35,96 @@ void CheckOrder(Queue Q) {
     }
 }
 
-int main(){
+void Shop (List* shop, List* Inventory, int* saldo)
+{
+    int beli; /* pilihan yang ingin dibeli */
+    int jumlah; /* jumlah yang ingin dibeli*/
+    int totalharga;
+    ListEl komponen;
+
+    /* Print komponen yang tersedia di shop */ 
+    printf("Komponen yang tersedia: \n");
+    if ((*shop).Neff > 0)
+    {
+        IdxType iteration = 0;
+        if (Length(*shop) != 0)
+        {
+            while (iteration < Length(*shop))
+            {
+                printf("%d. %s - $%d\n", iteration+1, Nama((*shop).A[iteration]), Harga((*shop).A[iteration])); 
+                iteration++;
+            }
+        }
+    }
+    else
+    {
+        printf ("Toko sedang kosong\n"); 
+    }
+
+    printf("Komponen yang ingin dibeli: ");
+    scanf("%d", &beli);
+    printf("\n");
+    printf("Masukkan jumlah yang ingin dibeli: ");
+    scanf("%d", &jumlah);
+    printf("\n");
+
+    // cek apakah saldo mencukupi komponen yang ingin dibeli 
+    komponen = Get(*shop, beli-1);
+    totalharga = ((Harga(komponen)) * jumlah);
+    if (totalharga <= *saldo) // uang mencukupi
+    {
+        // cek apakah komponen sudah ada
+        if (DoesComponentExist(*Inventory, komponen) > -1)
+        /* komponen sudah ada di inventory */
+        {
+            // menambahkan komponen yang sudah ada
+            Jumlah(komponen) = Jumlah(komponen) + jumlah; /* coba di tes, jalan ato ngga */
+        }
+        else 
+        {   
+            // menambahkan komponen baru
+            InsertLast(Inventory, komponen, jumlah);
+        }
+        printf("Komponen berhasil dibeli!");
+        *saldo -= totalharga;
+    }
+    else 
+    {
+        printf ("Uang tidak cukup!");
+    }
+    
+}
+
+void AddComponent(Stack *S, List* Inventory){
+    int pilihan; /* menyimpan pilihan */
+    Komponen pasang;
+    printf("Komponen yang telah terpasang: \n");
+    PrintStack(*S);
+    printf("Komponen yang tersedia: \n");
+    if ((*Inventory).Neff > 0){
+        PrintList(*Inventory);
+    }
+    if(!IsStackFull(*S)){
+        printf("Komponen yang ingin dipasang: ");
+        scanf("%d", &pilihan);
+        printf("\n");
+        pasang = Get(*Inventory, pilihan-1);
+        // while(Categ(pasang) != Top(*S)+1){
+        //     /* cek apakah komponen yang akan dipasang sudah sesuai urutan */
+        //     printf("Komponen tidak kompatibel dengan urutannya! Pilih komponen sesuai urutan: ");
+        //     scanf("%d", &pilihan); 
+        //     pasang = Get(*Inventory, pilihan-1);
+        //     // kalo gapunya inventory?
+        // }
+        printf("\n");
+        Push(S, pasang);
+        DeleteComponent(Inventory, pasang);
+    } else {
+        printf("Semua komponen telah terpasang. Silakan lakukan finish build!\n");
+    }
+}
+
+List CreateShopList(){
     List ShopList = MakeList(); /* list untuk shop */
     Komponen mobo,mobo2,mobo3,mobo4,mobo5;
     Komponen cpu,cpu2,cpu3,cpu4,cpu5;
@@ -37,16 +134,7 @@ int main(){
     Komponen gpu,gpu2,gpu3,gpu4,gpu5;
     Komponen ssd,ssd2,ssd3,ssd4,ssd5;
     Komponen psu,psu2,psu3,psu4,psu5;
-    List Inventory = MakeList(); /* list untuk inventory */
-    Order O1;
-    Order O2;
-    Order O3;
-    Queue QueueOrder;
-    Queue QueueOrder2;
-    Queue QueueOrder3;
-    CreateEmpty(&QueueOrder, 4);
-    CreateEmpty(&QueueOrder2, 4);
-    CreateEmpty(&QueueOrder3, 4);
+    // List Inventory = MakeList(); /* list untuk inventory */
     /* membuat komponen untuk list shop */
     CreateComponent(&mobo, "Motherboard AT", 1, 150, 1);
     CreateComponent(&mobo2, "Motherboard ATX", 1, 200, 1);
@@ -130,36 +218,43 @@ int main(){
     InsertLast(&ShopList, psu3, Jumlah(psu3));
     InsertLast(&ShopList, psu4, Jumlah(psu4));
     InsertLast(&ShopList, psu5, Jumlah(psu5));
-    // PrintList(ShopList);
+    return ShopList;
+}
 
-    O1 = GenerateOrder(ShopList, 7);
-    O2 = GenerateOrder(ShopList, 7);
-    O3 = GenerateOrder(ShopList, 7);
-
-    if(IsQEmpty(QueueOrder)){
-        printf("kosong\n");
-    } else {
-        printf("ngaco lu\n");
+void End_Day(Queue* OrderQueue, List Shop, int jmlorang){
+    CreateEmpty(OrderQueue, 8); /* max 8 order dalam 1 hari */
+    int i = 0;
+    while(i < 8){
+        Order O;
+        O = GenerateOrder(Shop, jmlorang);
+        Enqueue(OrderQueue, O);
+        i++;
     }
+}
 
-    Enqueue(&QueueOrder, O1);
-    Enqueue(&QueueOrder, O2);
-    Enqueue(&QueueOrder, O3);
-
-    if(!IsQEmpty(QueueOrder)){
-        printf("keisi bor\n");
-    } else {
-        printf("gagal anying\n");
+void RemoveComponent(Stack *S, List* Inventory) {
+    //Komponen
+    infotype component;
+    //Algoritma
+    
+    if (IsStackEmpty(*S)) {
+        printf("Tidak ada komponen yang terpasang\n");
     }
-
-    CheckOrder(QueueOrder);
-    // CheckOrder(QueueOrder2);
-    // CheckOrder(QueueOrder3);
-    infotype X;
-    Dequeue(&QueueOrder, &X);
-    CheckOrder(QueueOrder);
-    Dequeue(&QueueOrder, &X);
-    CheckOrder(QueueOrder);
-
+    else {
+        Pop(S, &component);
+        printf("Komponen %s berhasil dicopot !\n", Nama(component));
+        InsertLast(Inventory, component, Jumlah(component));
+    }
 
 }
+
+
+int main(){
+    List ShopList = CreateShopList();
+    int SaldoPlayer = 10000;
+    List PlayerInventory = MakeList();
+    Shop(&ShopList, &PlayerInventory, &SaldoPlayer);
+    PrintList(PlayerInventory);
+    printf("%d\n", SaldoPlayer);
+}
+

@@ -3,10 +3,10 @@
 #define stack_H
 #include <stdio.h>
 #include "../komponen/komponen.h"
-#include "boolean.h"
+#include "../boolean/boolean.h"
 
 #define Nil 0
-#define MaxEl 8
+#define MaxStack 8
 
 typedef Komponen infotype;
 typedef int address;

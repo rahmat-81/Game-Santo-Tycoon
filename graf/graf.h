@@ -1,10 +1,10 @@
 #ifndef _GRAF_H
 #define _GRAF_H
 
-#define Nil NULL
+// #define Nil NULL
 
-#include "boolean.h"
-#include "mapmatrix.h"
+#include "../boolean/boolean.h"
+#include "../matrix/mapmatrix.h"
 typedef struct{
     int NBVertex; /* jumlah node pada matrix */
     int** Edges;
