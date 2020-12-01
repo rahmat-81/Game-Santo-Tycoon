@@ -12,6 +12,7 @@
 #include "point/point.h"
 #include "queue/Queue.h"
 #include "stack/stack.h"
+#include "command/command.h"
 
 
 // gcc -o testmain mainprogram.c graf/graf.c komponen/komponen.c listdinamis/listdinamispoint.c listdinamis/listardin.c matrix/mapmatrix.c mesinkata/mesinkata.c order/order.c point/point.c queue/Queue.c stack/stack.c mesinkar/mesinkar.c
@@ -290,7 +291,43 @@ void Deliver(POINT player, POINT customer, List* Inventory, Queue* Q){
 }
 
 
+void Status(int Saldo, Queue Order, List Inventory, POINT player, ListPoint Point) {
+    printf("Uang tersisa: $%d\n", Saldo);
+    printf("Build yang sedang dikerjakan:");
+    printf("pesanan %d untuk pelanggan %d\n", NomorOrder(InfoHead(Order)), Pemesan(InfoHead(Order)));
+    printf("Lokasi: pemain sedang berada pada ");
+    boolean found = false;
+    int i = 0;
+    
+    while (!found && i < LengthPoint(Point)) {
+        if (player.X == Point.A[i].X && player.Y == Point.A[i].Y) {
+            found = true;
+        }
+        else
+        {
+            i++;
+        }
+        
+    }
 
+    if (found) {
+        if (i==0) {
+            printf("Base\n");
+        }
+        else if (i==1) {
+            printf("Shop\n");
+        }
+        else
+        {
+            printf("Gedung %d\n", i-1);
+        }
+        
+    }
+
+    printf("Inventory anda:\n");
+    PrintList(Inventory);
+}
+/*
 int main(){
     List ShopList = CreateShopList();
     int SaldoPlayer = 10000;
@@ -298,5 +335,61 @@ int main(){
     Stack newBuild;
     Queue queuepesanan;
     int i = 0;
+
+
 }
 
+*/
+
+
+// Test status
+int main() {
+    InsisiasiCommand();
+    START();
+    int NB = BacaInteger();
+    ADV();
+    int NK =BacaInteger();
+    IgnoreBlank();
+    int JumlahGedung=BacaInteger();
+    ADVNEW();
+    ListPoint listpoint=MakeListPoint(JumlahGedung);
+    MembuatGedung(JumlahGedung,&listpoint);
+    MATRIX Graf;
+    //PrintMap(Graf);
+    //BacaFilekeMatriks(JumlahGedung,&Graf);
+    printf("%d",ChartoInt('1'));
+    //PrintMap(Graf);
+    //printf("\n");
+    MATRIX CHECK;
+    CreateEmptyMap(&Graf,NB,NK);
+    PrintMap(Graf);
+    //ListPointtoMatrix(listpoint,&CHECK);
+    //PrintMap(CHECK);
+    List ShopList = CreateShopList();
+    int SaldoPlayer = 10000;
+    List PlayerInventory;
+    Stack newBuild;
+    Queue queuepesanan;
+    int i = 0;
+    
+    CreateEmpty(&queuepesanan, 5);
+    PlayerInventory = CreateShopList();
+    Order O1 = GenerateOrder(ShopList, 7);
+    Order O2 = GenerateOrder(ShopList, 7);
+    Order O3 = GenerateOrder(ShopList, 7);
+
+    if(IsQEmpty(queuepesanan)){
+        printf("kosong\n");
+    } else {
+        printf("ngaco lu\n");
+    }
+
+    Enqueue(&queuepesanan, O1);
+    Enqueue(&queuepesanan, O2);
+    Enqueue(&queuepesanan, O3);
+
+    POINT player = listpoint.A[2];
+
+    Status(SaldoPlayer, queuepesanan, PlayerInventory, player, listpoint);
+
+}
