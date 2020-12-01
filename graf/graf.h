@@ -36,6 +36,6 @@ void NeighborsList(AdjacencyMATRIX G, int Vertex);
 void PrintGraph(AdjacencyMATRIX G);
 /* mencetak matriks graf */
 
-AdjacencyMATRIX ConvertMatrixToGraph(MATRIX M);
+void ConvertMatrixToGraph(MATRIX M, AdjacencyMATRIX *G);
 
 #endif

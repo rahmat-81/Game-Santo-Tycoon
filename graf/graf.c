@@ -97,15 +97,13 @@ void PrintGraph(AdjacencyMATRIX G)
   printf("\n");
 }
 
-AdjacencyMATRIX ConvertMatrixToGraph(MATRIX M)
+void ConvertMatrixToGraph(MATRIX M, AdjacencyMATRIX* G)
 {
     int i, j;
-    AdjacencyMATRIX G;
-    CreateGraph(&G, NBrsEff(M));
-
     for(i = 0; i < NBrsEff(M); i++){
         for(j = 0; j < NKolEff(M); j++){
-            Edges(G,i,j) = (Elmt(M,i,j)) - '0'; /* ubah char jadi int */
-        }
+            // G.Edges[i][j] = (Elmt(M,i,j)) - '0'; /* ubah char jadi int */
+            Edges(*G, i, j) = Elmt(M,i,j) - '0';
+        }   
     }
 }
