@@ -1,6 +1,6 @@
 #ifndef __COMMAND__
 #define __COMMAND__
-#include "mesinkata.h"
+#include "../mesinkata/mesinkata.h"
 
 
 

@@ -7,6 +7,25 @@
 #include "../matrix/mapmatrix.h"
 #include "../command/command.h"
 
+char IntToChar(int i){
+    return i +'0';
+}
+void ListPointtoMatrix(ListPoint list, MATRIX *M){
+    for (int i=0;i<list.Neff;i++){
+        if (i==0){
+            SetMapElement(M,list.A[i].X,list.A[i].Y,'B');
+        }
+        else if (i==1){
+            SetMapElement(M,list.A[i].X,list.A[i].Y,'S');
+        }
+        else{
+            SetMapElement(M,list.A[i].X,list.A[i].Y,IntToChar(i-1));
+        }
+        
+    }
+
+}
+
 int main(){
     InsisiasiCommand();
     START();
@@ -19,10 +38,16 @@ int main(){
     ListPoint listpoint=MakeListPoint(JumlahGedung);
     MembuatGedung(JumlahGedung,&listpoint);
     MATRIX Graf;
-    BacaFilekeMatriks(JumlahGedung,&Graf);
+    //PrintMap(Graf);
+    //BacaFilekeMatriks(JumlahGedung,&Graf);
+    printf("%d",ChartoInt('1'));
+    //PrintMap(Graf);
+    //printf("\n");
+    MATRIX CHECK;
+    CreateEmptyMap(&Graf,NB,NK);
     PrintMap(Graf);
-    printf("\n");
-    
+    //ListPointtoMatrix(listpoint,&CHECK);
+    //PrintMap(CHECK);
 
     boolean endgame=false;
     Kata CCommand;
@@ -33,5 +58,6 @@ int main(){
             endgame=true;
         }
     } 
+
     return 0;
 }
