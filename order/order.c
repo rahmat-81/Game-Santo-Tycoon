@@ -21,7 +21,7 @@ Order GenerateOrder(List inventory, int JmlOrang)
     int i = 0;
     int randint;
     int TotalHarga = 0;
-    srand(time(0)); /* seeding random pseudorandom number generator */
+    // srand(time(0)); /* seeding random pseudorandom number generator */
 
     for(i; i < 8; i++){
         /* membuat 8 elemen */
@@ -34,7 +34,7 @@ Order GenerateOrder(List inventory, int JmlOrang)
         InsertLast(&pesanan, RandomComponent, Jumlah(RandomComponent));
     }
     int no_pemesan = rand()%JmlOrang + 1;
-    int harga_pesanan = TotalHarga * 1.3; /* ambil keuntungan 30% setiap order */
+    int harga_pesanan = TotalHarga + rand()%900; /* ambil keuntungan max $899 setiap order */
     CreateOrder(&newOrder, no_pemesan, pesanan, harga_pesanan);
     return newOrder;
 
