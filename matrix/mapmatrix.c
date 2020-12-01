@@ -74,7 +74,7 @@ void CreateEmptyMap (MATRIX * M, int NB, int NK)
     }
 }
 
-void PrintMap (MATRIX M)
+void PrintMap (MATRIX M, POINT player)
 /* I.S. M terdefinisi */
 /* F.S. Nilai M(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris 
    dipisahkan sebuah spasi */
