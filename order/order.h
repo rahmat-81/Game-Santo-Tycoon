@@ -2,6 +2,7 @@
 #define _ORDER_H
 
 #include "../listdinamis/listardin.h"
+#include<time.h>
 
 typedef struct{
     int NoPesanan;
