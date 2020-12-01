@@ -86,26 +86,26 @@ void PrintMap (MATRIX M)
 */
 {
     indeks a, b, i, j;
-    for (a = 0; a <= (NKolEff(M) + 1); a++){
-        printf("%c ", '*');
+    for (a = 0; a <= (NKolEff(M) + 2); a++){
+        printf("%c", '*');
     }
     printf("\n");
     for(i = 0; i < NBrsEff(M) ; i++){
-        printf("%c ", '*');
+        printf("%c  ", '*');
         for(j = 0; j < NKolEff(M); j++){
             if (i==(NBrsEff(M)-1) && j==(NKolEff(M)-1)){
-                printf("%c ", Elmt(M,i,j));
+                printf("%c  ", Elmt(M,i,j));
                 printf("%c\n", '*');
             } else if(j==(NKolEff(M)-1)){
-                printf("%c ", Elmt(M,i,j));
+                printf("%c  ", Elmt(M,i,j));
                 printf("%c\n", '*');
             } else {
-                printf("%c ", Elmt(M,i,j));
+                printf("%c", Elmt(M,i,j));
             }
         }
     }
-    for (b = 0; b <= (NKolEff(M) + 1); b++){
-        printf("%c ", '*');
+    for (b = 0; b <= (NKolEff(M) + 2); b++){
+        printf("%c", '*');
     }
 }
 
@@ -113,5 +113,5 @@ void SetMapElement(MATRIX* M, int i, int j, char el)
 /* I.S. IsIdxValid(i,j) */
 /* F.S. Elemen matriks pada indeks i,j akan menjadi X */ 
 {
-    Elmt(*M, NBrsEff(*M)-i, j) = el;
+    Elmt(*M, i-1, j-1) = el;
 }
