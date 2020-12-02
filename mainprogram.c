@@ -409,10 +409,7 @@ void MOVE (POINT player, AdjacencyMATRIX Graf, ListPoint Point){
     int nomor_depan=1;
     for(j=0; j < NBVertex(Graf); j++){
         if(Edges(Graf, j, i) > 0){
-            printf("%d. Node %d\n", nomor_depan, i);
-            nomor_depan++;
-        }
-        if (pilihan == nomor_depan){
+            if (pilihan == nomor_depan){
             player=Point.A[j];
             printf("Kamu telah mencapai lokasi ");
             if (j==0){
@@ -424,8 +421,6 @@ void MOVE (POINT player, AdjacencyMATRIX Graf, ListPoint Point){
             else{
                 printf("Pelanggan %d\n", i-1);
             }
-            
-        }
         nomor_depan++;
     }
 
