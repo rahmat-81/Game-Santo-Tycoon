@@ -372,6 +372,66 @@ void FINISHBUILD(Stack Inventory, Order order, List* InventoryPlayer){
     
 }
 
+void MOVE (POINT player, AdjacencyMATRIX Graf, ListPoint Point){
+    printf("Kamu berada pada ");
+    boolean found = false;
+    int i = 0;
+    
+    while (!found && i < LengthPoint(Point)) {
+        if (player.X == Point.A[i].X && player.Y == Point.A[i].Y) {
+            found = true;
+        }
+        else
+        {
+            i++;
+        }
+        
+    }
+
+    if (found) {
+        if (i==0) {
+            printf("Base\n");
+        }
+        else if (i==1) {
+            printf("Shop\n");
+        }
+        else
+        {
+            printf("Gedung %d\n", i-1);
+        }
+        
+    }
+    NeighborsList(Graf,i);
+    printf("Nomor tujuan: ");
+    int pilihan;
+    scanf("%d",&pilihan);
+    int j;
+    int nomor_depan=1;
+    for(j=0; j < NBVertex(Graf); j++){
+        if(Edges(Graf, j, i) > 0){
+            printf("%d. Node %d\n", nomor_depan, i);
+            nomor_depan++;
+        }
+        if (pilihan == nomor_depan){
+            player=Point.A[j];
+            printf("Kamu telah mencapai lokasi ");
+            if (j==0){
+                printf("Base\n");
+            }
+            else if (j==1){
+                printf("Shop\n");
+            }
+            else{
+                printf("Pelanggan %d\n", i-1);
+            }
+            
+        }
+        nomor_depan++;
+    }
+
+
+}
+
 
 int main(){
     // INISIALISASI VARIABEL PENTING DALAM GAME
