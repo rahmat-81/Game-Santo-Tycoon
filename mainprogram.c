@@ -302,11 +302,15 @@ void Deliver(POINT player, int NomorGedung, ListPoint Customer, List* Inventory,
 }
 
 
-void Status(int Saldo, Queue Order, List Inventory, POINT player, ListPoint Point) {
+void Status(int Saldo, Queue Order, List Inventory, POINT player, ListPoint Point, boolean startedbuild) {
     printf("Uang tersisa: $%d\n", Saldo);
-    printf("Build yang sedang dikerjakan:");
-    printf("pesanan %d untuk pelanggan %d\n", NomorOrder(InfoHead(Order)), Pemesan(InfoHead(Order)));
-    printf("Lokasi: pemain sedang berada pada ");
+    printf("Build yang sedang dikerjakan: ");
+    if(!startedbuild){
+        printf("Belum ada\n");
+    } else {
+        printf("Pesanan %d untuk Pelanggan %d\n", NomorOrder(InfoHead(Order)), Pemesan(InfoHead(Order)));
+    }
+    printf("Lokasi: Pemain sedang berada pada ");
     boolean found = false;
     int i = 0;
     
@@ -335,7 +339,7 @@ void Status(int Saldo, Queue Order, List Inventory, POINT player, ListPoint Poin
         
     }
 
-    printf("Inventory anda:\n");
+    printf("Inventory Anda:\n");
     PrintList(Inventory);
 }
 
@@ -358,7 +362,7 @@ void FinishBuild(Stack Inventory, Order order, List* InventoryPlayer){
             i++;
         }
         if (found){
-            printf("Komponen yang dipasangkan belum sesuai dengan pesanan, build belum dapat diselesaikan.");
+            printf("Komponen yang dipasangkan belum sesuai dengan pesanan, build belum dapat diselesaikan.\n");
         }
         else{
             printf("Pesanan %d telah selesai. Silahkan antar ke pelanggan %d!",order.NoPesanan,order.Pemesan);
@@ -434,6 +438,78 @@ void Move (POINT* player, AdjacencyMATRIX Graf, ListPoint Point){
 
 }
 
+void StartBuild (ListPoint listpoint, POINT Player, Queue order, boolean* startbuild, Stack* newbuild)
+{    
+    // Stack newBuild;
+    if(Player.X == listpoint.A[0].X && Player.Y == listpoint.A[0].Y){
+        if (IsQEmpty(order))
+        { 
+        printf("Kamu belum menerima pesanan.\n");
+        (*startbuild) = false;
+        }
+        else
+        {
+        CreateEmptyStack(newbuild);
+        (*startbuild) = true;
+        printf ("Kamu telah memulai pesanan %d untuk pelanggan %d.\n", NomorOrder(InfoHead(order)), Pemesan(InfoHead(order)));
+        }
+    } else {
+        printf("Kamu belum berada di Base! Silakan lakukan MOVE ke base agar dapat melakukan build!\n");
+        (*startbuild) = false;
+    }
+    
+    
+
+void MapPlayer (MATRIX M, POINT player)
+/* I.S. M terdefinisi */
+/* F.S. Nilai M(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris 
+   dipisahkan sebuah spasi */
+/* Proses: Menulis nilai setiap elemen M ke layar dengan traversal per baris dan per kolom */
+/* Contoh: menulis matriks 3x3 (ingat di akhir tiap baris, tidak ada spasi)
+1 2 3
+4 5 6
+8 9 10
+*/
+{
+    indeks a, b, i, j;
+    // print baris pertama
+    for (a = 0; a <= (NKolEff(M) + 2); a++){
+        printf("%c", '*');
+    }
+    printf("\n");
+
+    for(i = 0; i < NBrsEff(M) ; i++)
+    {
+        printf("%c ", '*'); // print kolom pertama
+
+        for(j = 0; j < NKolEff(M); j++)
+        {
+            if ((player.X == i+1) && (player.Y == j+1))
+            {
+                printf("P");
+            }
+            else if (i==(NBrsEff(M)-1) && j==(NKolEff(M)-1))
+            {
+                printf("%c", Elmt(M, i, j));
+                printf("%c\n", '*');
+            } 
+            else if(j==(NKolEff(M)-1))
+            {
+                printf("%c", Elmt(M, i, j));
+                printf("%c\n", '*');
+            } 
+            else 
+            {
+                printf("%c", Elmt(M, i, j));
+            }
+        }
+    }
+    // print baris terakhir
+    for (b = 0; b <= (NKolEff(M) + 2); b++){
+        printf("%c", '*');
+    }
+}
+
 
 int main(){
     // INISIALISASI VARIABEL PENTING DALAM GAME
@@ -476,7 +552,7 @@ int main(){
     ListPoint listpoint = MakeListPoint(JumlahGedung); /* MEMBUAT LIST OF KOORDINAT GEDUNG */
     MembuatGedung(JumlahGedung,&listpoint);
      /* inisialisasi posisi awal player */
-    Player = listpoint.A[3]; /* player ada di base pada awal mula game */
+    Player = listpoint.A[0]; /* player ada di base pada awal mula game */
     CreateEmptyMap(&Map, NB, NK); /* membuat map berdasarkan ukuran file konfigurasi */
     ListPointtoMatrix(listpoint, &Map); /* memasukkan koordinat ke map */
     
@@ -484,6 +560,7 @@ int main(){
     CreateGraph(&Graf, JumlahGedung); /* membuat graf dengan ukuran jumlahgedung x jumlahgedung */
     BacaFilekeMatriks(JumlahGedung,&ReadGraf);
     ConvertMatrixToGraph(ReadGraf, &Graf);
+    // PrintGraph(Graf);
     // PrintGraph(Graf); /* lolos uji */
 
     // PERSIAPAN GAME
@@ -498,14 +575,16 @@ int main(){
     
     while(!EndGame){
         // Game awal 
-        printf("ENTER COMMAND: ");
-        Kata Command = BacaKataDariCLI();
+        Kata Command;
+        printf("ENTER COMMAND:");
+        Command = BacaKataDariCLI();
+        printf("%s\n", Command.TabKata);
 
         if(isSamaKata(Command, MOVE)){
             Move(&Player, Graf, listpoint);
-            // printf("%d %d\n", Player.X, Player.Y);
+            printf("%s\n", Command.TabKata);
         } else if(isSamaKata(Command, STATUS)){
-            Status(SaldoPlayer, QPesanan, PlayerInventory, Player, listpoint); 
+            Status(SaldoPlayer, QPesanan, PlayerInventory, Player, listpoint, StartedBuild); 
         } else if(isSamaKata(Command, CHECKORDER)){
             CheckOrder(QPesanan);
         } else if(isSamaKata(Command, ADDCOMPONENT)){
@@ -525,9 +604,31 @@ int main(){
         } else if(isSamaKata(Command, SHOP)){
             Shop(&ShopList, &PlayerInventory, &SaldoPlayer);
         } else if(isSamaKata(Command, DELIVER)){
-            
+            Deliver(Player, Pemesan(InfoHead(QPesanan)), listpoint, &PlayerInventory, &QPesanan, &SaldoPlayer);
+        } else if (isSamaKata(Command, END_DAY)){
+            if(StartedBuild){
+                printf("Kamu belum menyelesaikan build! Silakan selesaikan build terlebih dahulu!\n");
+            } else {
+                End_Day(&QPesanan, ShopList, JumlahGedung-2);
+            }    
+        }else if(isSamaKata(Command, STARTBUILD)){
+            StartBuild(listpoint, Player, QPesanan, &StartedBuild, &Build);
+        }else if (isSamaKata(Command, FINISHBUILD)){
+            if(!StartedBuild){
+                //  build belum dilakukan
+                printf("Kamu belum melakukan build! Silakan lakukan STARTBUILD!\n");
+            } else {
+                FinishBuild(Build,InfoHead(QPesanan),&PlayerInventory);
+            }
+        } else if(isSamaKata(Command, MAP)){
+            MapPlayer(Map, Player);
+            printf("\n");
+        } else if(isSamaKata(Command, EXIT)){
+            EndGame = true;
+        } else {
+            printf("Command tidak valid! Masukkan command yang valid!\n");
         }
-}
+    }
 }
 
 // int main(){
