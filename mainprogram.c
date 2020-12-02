@@ -18,19 +18,21 @@
 // gcc -o testmain mainprogram.c graf/graf.c komponen/komponen.c listdinamis/listdinamispoint.c listdinamis/listardin.c matrix/mapmatrix.c mesinkata/mesinkata.c order/order.c point/point.c queue/Queue.c stack/stack.c mesinkar/mesinkar.c
 // command untuk compile ^
 
+
+
 char IntToChar(int i){
     return i +'0';
 }
 void ListPointtoMatrix(ListPoint list, MATRIX *M){
     for (int i=0;i<list.Neff;i++){
         if (i==0){
-            SetMapElement(M,list.A[i].Y,list.A[i].X,'B');
+            SetMapElement(M,list.A[i].X,list.A[i].Y,'B');
         }
         else if (i==1){
-            SetMapElement(M,list.A[i].Y,list.A[i].X,'S');
+            SetMapElement(M,list.A[i].X,list.A[i].Y,'S');
         }
         else{
-            SetMapElement(M,list.A[i].Y,list.A[i].X,IntToChar(i-1));
+            SetMapElement(M,list.A[i].X,list.A[i].Y,IntToChar(i-1));
         }
         
     }
@@ -162,46 +164,46 @@ List CreateShopList(){
     Komponen psu,psu2,psu3,psu4,psu5;
     // List Inventory = MakeList(); /* list untuk inventory */
     /* membuat komponen untuk list shop */
-    CreateComponent(&mobo, "Motherboard AT", 1, 150, 1);
-    CreateComponent(&mobo2, "Motherboard ATX", 1, 200, 1);
-    CreateComponent(&mobo3, "Motherboard Micro-ATX", 1, 250, 1);
-    CreateComponent(&mobo4, "Motherboard Mini ITX", 1, 275, 1);
-    CreateComponent(&mobo5, "Motherboard E-ATX", 1, 300, 1);
-    CreateComponent(&cpu, "Ryzeng 5 4500X", 2, 400, 1);
-    CreateComponent(&cpu2, "Intol i9 9800HK", 2, 700, 1);
-    CreateComponent(&cpu3, "Ryzeng 7 2900X", 2, 450, 1);
-    CreateComponent(&cpu4, "Intol Pentium Trio", 2, 75, 1);
-    CreateComponent(&cpu5, "Apple Silicca", 2, 900, 1);
-    CreateComponent(&ram, "Kingstool 16GB DDR4 2600 MHz", 3, 65, 1);
-    CreateComponent(&ram2, "HyperVTX 8GB DDR4 3200 MHz", 3, 60, 1);
-    CreateComponent(&ram3, "Sumsang 8GB DDR4 3200 MHz", 3, 75, 1);
-    CreateComponent(&ram4, "VGan 4GB DDR3 2133 MHz", 3, 45, 1);
-    CreateComponent(&ram5, "Kingston 16GB DDR4", 3, 150, 1);
-    CreateComponent(&cooler, "Cooler Mister Silent Cooler", 4, 70, 1);
-    CreateComponent(&cooler2, "Alsaya TBF-100 Cooler", 4, 50, 1);
-    CreateComponent(&cooler3, "Cooler Mister Master Liquid", 4, 95, 1);
-    CreateComponent(&cooler4, "Aigoo DarkFlash Cooler", 4, 70, 1);
-    CreateComponent(&cooler5, "Cooler Mister MasterAir", 4, 100, 1);
-    CreateComponent(&casing, "NZXT H510i", 5, 170, 1);
-    CreateComponent(&casing2, "Fantich PULSE CG71", 5, 30, 1);
-    CreateComponent(&casing3, "Armagendong XDS20", 5, 50, 1);
-    CreateComponent(&casing4, "Simbanda", 5, 8, 1);
-    CreateComponent(&casing5, "Imperial Fortress 303 RGB", 5, 45, 1);
-    CreateComponent(&gpu, "NVDIA RTX 3090Ti", 6, 2200, 1);
-    CreateComponent(&gpu2, "AMJ RX 5600M", 6, 90, 1);
-    CreateComponent(&gpu3, "NVDIA GTX 1080Ti", 6, 150, 1);
-    CreateComponent(&gpu4, "AMJ RX580", 6, 2000, 1);
-    CreateComponent(&gpu5, "AMJ RX 5600XT", 6, 460, 1);
-    CreateComponent(&ssd, "Sumsang EVO 980 1TB", 7, 230, 1);
-    CreateComponent(&ssd2, "Sumsang EVO 860 120GB", 7, 80, 1);
-    CreateComponent(&ssd3, "Kingstool 500GB SATA", 7, 95, 1);
-    CreateComponent(&ssd4, "Seaglare Barracuda 250GB", 7, 99, 1);
-    CreateComponent(&ssd5, "VGan HDD 1TB", 7, 60, 1);
-    CreateComponent(&psu, "Armagendong PSU 600W", 8, 70, 1);
-    CreateComponent(&psu2, "Panascanic PSU 500W", 8, 70, 1);
-    CreateComponent(&psu3, "Corseer PSU 600W", 8, 70, 1);
-    CreateComponent(&psu4, "Cooler Mister CX PSU 600W", 8, 70, 1);
-    CreateComponent(&psu5, "ThermalGive PSU 550W", 8, 70, 1);
+    CreateComponent(&mobo, "Motherboard AT", 1, 150, 1,0);
+    CreateComponent(&mobo2, "Motherboard ATX", 1, 200, 1,0);
+    CreateComponent(&mobo3, "Motherboard Micro-ATX", 1, 250, 1,0);
+    CreateComponent(&mobo4, "Motherboard Mini ITX", 1, 275, 1,0);
+    CreateComponent(&mobo5, "Motherboard E-ATX", 1, 300, 1,0);
+    CreateComponent(&cpu, "Ryzeng 5 4500X", 2, 400, 1,0);
+    CreateComponent(&cpu2, "Intol i9 9800HK", 2, 700, 1,0);
+    CreateComponent(&cpu3, "Ryzeng 7 2900X", 2, 450, 1,0);
+    CreateComponent(&cpu4, "Intol Pentium Trio", 2, 75, 1,0);
+    CreateComponent(&cpu5, "Apple Silicca", 2, 900, 1,0);
+    CreateComponent(&ram, "Kingstool 16GB DDR4 2600 MHz", 3, 65, 1,0);
+    CreateComponent(&ram2, "HyperVTX 8GB DDR4 3200 MHz", 3, 60, 1,0);
+    CreateComponent(&ram3, "Sumsang 8GB DDR4 3200 MHz", 3, 75, 1,0);
+    CreateComponent(&ram4, "VGan 4GB DDR3 2133 MHz", 3, 45, 1,0);
+    CreateComponent(&ram5, "Kingston 16GB DDR4", 3, 150, 1,0);
+    CreateComponent(&cooler, "Cooler Mister Silent Cooler", 4, 70, 1,0);
+    CreateComponent(&cooler2, "Alsaya TBF-100 Cooler", 4, 50, 1,0);
+    CreateComponent(&cooler3, "Cooler Mister Master Liquid", 4, 95, 1,0);
+    CreateComponent(&cooler4, "Aigoo DarkFlash Cooler", 4, 70, 1,0);
+    CreateComponent(&cooler5, "Cooler Mister MasterAir", 4, 100, 1,0);
+    CreateComponent(&casing, "NZXT H510i", 5, 170, 1,0);
+    CreateComponent(&casing2, "Fantich PULSE CG71", 5, 30, 1,0);
+    CreateComponent(&casing3, "Armagendong XDS20", 5, 50, 1,0);
+    CreateComponent(&casing4, "Simbanda", 5, 8, 1,0);
+    CreateComponent(&casing5, "Imperial Fortress 303 RGB", 5, 45, 1,0);
+    CreateComponent(&gpu, "NVDIA RTX 3090Ti", 6, 2200, 1,0);
+    CreateComponent(&gpu2, "AMJ RX 5600M", 6, 90, 1,0);
+    CreateComponent(&gpu3, "NVDIA GTX 1080Ti", 6, 150, 1,0);
+    CreateComponent(&gpu4, "AMJ RX580", 6, 2000, 1,0);
+    CreateComponent(&gpu5, "AMJ RX 5600XT", 6, 460, 1,0);
+    CreateComponent(&ssd, "Sumsang EVO 980 1TB", 7, 230, 1,0);
+    CreateComponent(&ssd2, "Sumsang EVO 860 120GB", 7, 80, 1,0);
+    CreateComponent(&ssd3, "Kingstool 500GB SATA", 7, 95, 1,0);
+    CreateComponent(&ssd4, "Seaglare Barracuda 250GB", 7, 99, 1,0);
+    CreateComponent(&ssd5, "VGan HDD 1TB", 7, 60, 1,0);
+    CreateComponent(&psu, "Armagendong PSU 600W", 8, 70, 1,0);
+    CreateComponent(&psu2, "Panascanic PSU 500W", 8, 70, 1,0);
+    CreateComponent(&psu3, "Corseer PSU 600W", 8, 70, 1,0);
+    CreateComponent(&psu4, "Cooler Mister CX PSU 600W", 8, 70, 1,0);
+    CreateComponent(&psu5, "ThermalGive PSU 550W", 8, 70, 1,0);
 
     /* masukkan komponen ke list */
     InsertLast(&ShopList, mobo, Jumlah(mobo));
@@ -274,14 +276,22 @@ void RemoveComponent(Stack *S, List* Inventory) {
 
 }
 
-void Deliver(POINT player, POINT customer, List* Inventory, Queue* Q){
-    if(Absis(player) == Absis(customer) && Ordinat(player) == Ordinat(customer)){
+void Deliver(POINT player, int NomorGedung, ListPoint Customer, List* Inventory, Queue* Q){
+    // nomor gedung didapatkan dari parameter pemesan pada infohead orderan, diakses melalu Pemesan(InfoHead(O))
+    // membuat build satu2, lalu mengantarkan build tersebut. hanya ada 1 build dalam inventory.
+    if(Absis(player) == Absis(Customer.A[NomorGedung+1]) && Ordinat(player) == Ordinat(Customer.A[NomorGedung+1])){
         /* posisi player ada pada gedung pelanggan */
         ListEl Build;
         if(DoesBuildExists(Inventory, &Build)){
-            QInfo BuildCustomer;
-            Dequeue(Q, &BuildCustomer); /* dequeue orderan */
-            DeleteComponent(Inventory, Build);
+            if(Pemilik(Build) == NomorGedung){
+                QInfo BuildCustomer;
+                Dequeue(Q, &BuildCustomer); /* dequeue orderan */
+                DeleteComponent(Inventory, Build);
+                printf("Pesanan #%d berhasil diantarkan kepada pelanggan %d!\n", NomorOrder(BuildCustomer), Pemesan(BuildCustomer));
+            } else {
+                printf("Build yang diantarkan bukan milik pemesan ini! Silakan lakukan command Move ke tempat pemesan yang benar!\n");
+            }
+            
         } else {
             printf("Anda belum memiliki build yang selesai, silakan selesaikan build terlebih dahulu\n");
         }
@@ -328,20 +338,20 @@ void Status(int Saldo, Queue Order, List Inventory, POINT player, ListPoint Poin
     PrintList(Inventory);
 }
 
-void FINISHBUILD(Stack Inventory, Order order){
+void FINISHBUILD(Stack Inventory, Order order, List* InventoryPlayer){
 
     Stack InventoryCheck;
     Komponen X;
     CopyStack(Inventory,&InventoryCheck);
     if (IsStackEmpty(InventoryCheck)){
-        printf("Komponen yang dipasangkan belum sesuai dengan pesanan, build belum dapat diselesaikan.");
+        printf("Komponen yang dipasangkan belum sesuai dengan pesanan, build belum dapat diselesaikan.\n");
     }
     else{
         int i=0;
         boolean found=false;
         while ((!IsStackEmpty(InventoryCheck))&& (!found)){
             Pop(&InventoryCheck,&X);
-            if (X.NamaBarang != order.ListKomponen.A[i-7].NamaBarang){
+            if (X.NamaBarang != order.ListKomponen.A[7-i].NamaBarang){
                 found=true;
             }
             i++;
@@ -351,25 +361,83 @@ void FINISHBUILD(Stack Inventory, Order order){
         }
         else{
             printf("Pesanan %d telah selesai. Silahkan antar ke pelanggan %d!",order.NoPesanan,order.Pemesan);
+            Komponen Build;
+            char* namapesanan;
+            asprintf(&namapesanan, "Build untuk pesanan #%d", NomorOrder(order)); /* alokasi nama order */
+            CreateComponent(&Build, namapesanan, 9, Invoice(order), 1, Pemesan(order));
+            free(namapesanan); /* dealokasi nama order */
+            InsertLast(InventoryPlayer, Build, 1);
         }
     }
     
 }
-/*
+
+
 int main(){
-    List ShopList = CreateShopList();
-    int SaldoPlayer = 10000;
-    List PlayerInventory = MakeList();
-    Stack newBuild;
-    Queue queuepesanan;
-    int i = 0;
+    // INISIALISASI VARIABEL PENTING DALAM GAME
+    List ShopList = CreateShopList(); /* LIST DINAMIS UNTUK SHOPPING */
+
+    int SaldoPlayer = 10000; /* SALDO AWAL USER */
+    
+    List PlayerInventory = MakeList(); /* INVENTORY KOSONG */
+    
+    Stack Build; /* STACK UNTUK BUILD */
+    CreateEmptyStack(&Build);
+    
+    Queue QPesanan; /* Queue order pelanggan */
+    CreateEmpty(&QPesanan, 8); /*MENERIMA 8 PESANAN MAKSIMAL */
+    
+    srand(time(0)); /*PSEUDORANDOM NUMBER GENERATOR SEED UNTUK GENERATE ORDER */
+    
+    POINT Player; /* POSISI PLAYER */
+    
+    
 
 
-}
+// }
 
-*/
+// int main(){
+//     //  test deliver
+//     List Inventory = CreateShopList();
+//     List ShopList = CreateShopList();
+//     Komponen build;
+//     srand(time(0));
+//     InsisiasiCommand();
+//     START();
+//     int NB = BacaInteger();
+//     ADV();
+//     int NK =BacaInteger();
+//     IgnoreBlank();
+//     int JumlahGedung=BacaInteger();
+//     ADVNEW();
+//     ListPoint listpoint=MakeListPoint(JumlahGedung);
+//     MembuatGedung(JumlahGedung,&listpoint);
+//      /* inisialisasi posisi awal player */
+//     Queue orderan;
+//     CreateEmpty(&orderan, 2);
+//     int i;
+//     i = 0;
+//     while (i < 2){
+//         Order O = GenerateOrder(ShopList, 2);
+//         Enqueue(&orderan, O);
+//         i++;
+//     }
+//     CreateComponent(&build, "Pesanan baru", 9, Invoice(InfoHead(orderan)), 1, Pemesan(InfoHead(orderan))+1);
+//     InsertLast(&Inventory, build, 1);
+//     POINT player = listpoint.A[Pemesan(InfoHead(orderan))+1];
+//     POINT gedung = listpoint.A[Pemesan(InfoHead(orderan))+2];
+//     printf("posisi player ada di %d, %d\n",player.X, player.Y);
+//     printf("posisi gedung ada di %d, %d\n",gedung.X, gedung.Y);
+//     CheckOrder(orderan);
+//     Deliver(player, Pemesan(InfoHead(orderan)), listpoint, &Inventory, &orderan);
+
+    
+    
+    
+// }
 
 
+/*
 // Test status
 int main() {
     InsisiasiCommand();
@@ -421,3 +489,4 @@ int main() {
     Status(SaldoPlayer, queuepesanan, PlayerInventory, player, listpoint);
 
 }
+*/
