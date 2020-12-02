@@ -6,6 +6,7 @@ typedef struct{
     int Kategori;
     int Harga;
     int Jumlah;
+    int Pemilik;
 }Komponen;
 
 /* Keterangan */
@@ -17,13 +18,16 @@ typedef struct{
 // kategori 6: GPU
 // kategori 7: Storage
 // kategori 8: PSU
-// kategori 0: Build
+// kategori 9: Build
+// pemilik 0: inventory player
+// pemilik i : 
 
 
 #define Nama(K) (K).NamaBarang
 #define Categ(K) (K).Kategori
 #define Harga(K) (K).Harga
 #define Jumlah(K) (K).Jumlah
+#define Pemilik(K) (K).Pemilik
 
-void CreateComponent(Komponen* K, char* merek, int categ, int price, int jumlah);
+void CreateComponent(Komponen* K, char* merek, int categ, int price, int jumlah, int pemilik);
 #endif
