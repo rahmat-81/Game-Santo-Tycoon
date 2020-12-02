@@ -132,8 +132,7 @@ void AddComponent(Stack *S, List* Inventory){
     printf("Komponen yang tersedia: \n");
     if ((*Inventory).Neff > 0){
         PrintList(*Inventory);
-    }
-    if(!IsStackFull(*S)){
+        if(!IsStackFull(*S)){
         printf("Komponen yang ingin dipasang: ");
         scanf("%d", &pilihan);
         while(pilihan > Length(*Inventory) || pilihan < 1){
@@ -147,9 +146,13 @@ void AddComponent(Stack *S, List* Inventory){
         Push(S, pasang);
         DeleteComponent(Inventory, pasang);
         printf("Komponen berhasil di pasang!\n");
+        } else {
+            printf("Semua komponen telah terpasang. Silakan lakukan finish build!\n");
+        }
     } else {
-        printf("Semua komponen telah terpasang. Silakan lakukan finish build!\n");
+        printf("Inventory Anda kosong.\n");
     }
+    
 }
 
 List CreateShopList(){
@@ -343,7 +346,7 @@ void Status(int Saldo, Queue Order, List Inventory, POINT player, ListPoint Poin
     PrintList(Inventory);
 }
 
-void FinishBuild(Stack Inventory, Order order, List* InventoryPlayer){
+void FinishBuild(Stack Inventory, Order order, List* InventoryPlayer, boolean* startbuild){
 
     Stack InventoryCheck;
     Komponen X;
@@ -372,6 +375,7 @@ void FinishBuild(Stack Inventory, Order order, List* InventoryPlayer){
             CreateComponent(&Build, "Build untuk Pesanan XX", 9, Invoice(order), 1, Pemesan(order));
             // free(namapesanan); /* dealokasi nama order */
             InsertLast(InventoryPlayer, Build, 1);
+            (*startbuild) = true;
         }
     }
     
@@ -458,7 +462,7 @@ void StartBuild (ListPoint listpoint, POINT Player, Queue order, boolean* startb
         (*startbuild) = false;
     }
     
-    
+}
 
 void MapPlayer (MATRIX M, POINT player)
 /* I.S. M terdefinisi */
@@ -618,7 +622,7 @@ int main(){
                 //  build belum dilakukan
                 printf("Kamu belum melakukan build! Silakan lakukan STARTBUILD!\n");
             } else {
-                FinishBuild(Build,InfoHead(QPesanan),&PlayerInventory);
+                FinishBuild(Build,InfoHead(QPesanan),&PlayerInventory, &StartedBuild);
             }
         } else if(isSamaKata(Command, MAP)){
             MapPlayer(Map, Player);
@@ -631,68 +635,3 @@ int main(){
     }
 }
 
-// int main(){
-//     //  test deliver
-//     List Inventory = CreateShopList();
-//     List ShopList = CreateShopList();
-//     Komponen build;
-//     srand(time(0));
-    
-    
-    
-    
-// }
-
-
-
-// Test status
-// int main() {
-//     InsisiasiCommand();
-//     START();
-//     int NB = BacaInteger();
-//     ADV();
-//     int NK =BacaInteger();
-//     IgnoreBlank();
-//     int JumlahGedung=BacaInteger();
-//     ADVNEW();
-//     ListPoint listpoint=MakeListPoint(JumlahGedung);
-//     MembuatGedung(JumlahGedung,&listpoint);
-//     MATRIX Graf;
-//     //PrintMap(Graf);
-//     //BacaFilekeMatriks(JumlahGedung,&Graf);
-//     printf("%d",ChartoInt('1'));
-//     //PrintMap(Graf);
-//     //printf("\n");
-//     MATRIX CHECK;
-//     CreateEmptyMap(&Graf,NB,NK);
-//     PrintMap(Graf);
-//     //ListPointtoMatrix(listpoint,&CHECK);
-//     //PrintMap(CHECK);
-//     List ShopList = CreateShopList();
-//     int SaldoPlayer = 10000;
-//     List PlayerInventory;
-//     Stack newBuild;
-//     Queue queuepesanan;
-//     int i = 0;
-    
-//     CreateEmpty(&queuepesanan, 5);
-//     PlayerInventory = CreateShopList();
-//     Order O1 = GenerateOrder(ShopList, 7);
-//     Order O2 = GenerateOrder(ShopList, 7);
-//     Order O3 = GenerateOrder(ShopList, 7);
-
-//     if(IsQEmpty(queuepesanan)){
-//         printf("kosong\n");
-//     } else {
-//         printf("ngaco lu\n");
-//     }
-
-//     Enqueue(&queuepesanan, O1);
-//     Enqueue(&queuepesanan, O2);
-//     Enqueue(&queuepesanan, O3);
-
-//     POINT player = listpoint.A[2];
-
-//     Status(SaldoPlayer, queuepesanan, PlayerInventory, player, listpoint);
-
-// }
