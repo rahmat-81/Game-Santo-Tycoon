@@ -422,7 +422,7 @@ void MOVE (POINT player, AdjacencyMATRIX Graf, ListPoint Point){
                 printf("Pelanggan %d\n", i-1);
             }
         nomor_depan++;
-    }
+    }}}
 
 
 }
