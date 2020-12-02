@@ -13,6 +13,7 @@
 #include "queue/Queue.h"
 #include "stack/stack.h"
 #include "command/command.h"
+#include <string.h>
 
 
 // gcc -o testmain mainprogram.c graf/graf.c komponen/komponen.c listdinamis/listdinamispoint.c listdinamis/listardin.c matrix/mapmatrix.c mesinkata/mesinkata.c order/order.c point/point.c queue/Queue.c stack/stack.c mesinkar/mesinkar.c
@@ -368,7 +369,7 @@ void FinishBuild(Stack Inventory, Order order, List* InventoryPlayer, boolean* s
             printf("Komponen yang dipasangkan belum sesuai dengan pesanan, build belum dapat diselesaikan.\n");
         }
         else{
-            printf("Pesanan %d telah selesai. Silahkan antar ke pelanggan %d!",order.NoPesanan,order.Pemesan);
+            printf("Pesanan %d telah selesai. Silahkan antar ke pelanggan %d!\n",order.NoPesanan,order.Pemesan);
             Komponen Build;
             // char* namapesanan;
             // asprintf(&namapesanan, "Build untuk pesanan #%d", NomorOrder(order)); /* alokasi nama order */
@@ -582,11 +583,9 @@ int main(){
         Kata Command;
         printf("ENTER COMMAND:");
         Command = BacaKataDariCLI();
-        printf("%s\n", Command.TabKata);
-
+        
         if(isSamaKata(Command, MOVE)){
             Move(&Player, Graf, listpoint);
-            printf("%s\n", Command.TabKata);
         } else if(isSamaKata(Command, STATUS)){
             Status(SaldoPlayer, QPesanan, PlayerInventory, Player, listpoint, StartedBuild); 
         } else if(isSamaKata(Command, CHECKORDER)){
