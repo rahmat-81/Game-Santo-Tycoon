@@ -1,3 +1,6 @@
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE 1
+#endif
 #include<stdio.h>
 #include<stdlib.h>
 #include "boolean/boolean.h"
@@ -68,60 +71,71 @@ void Shop (List* shop, List* Inventory, int* saldo)
     ListEl komponen;
 
     /* Print komponen yang tersedia di shop */ 
-    printf("Komponen yang tersedia: \n");
+    
     if ((*shop).Neff > 0)
     {
+        
         IdxType iteration = 0;
         if (Length(*shop) != 0)
-        {
+        {   
+            printf("Komponen yang tersedia: \n");
             while (iteration < Length(*shop))
             {
                 printf("%d. %s - $%d\n", iteration+1, Nama((*shop).A[iteration]), Harga((*shop).A[iteration])); 
                 iteration++;
             }
+        
         }
+        printf("Jika tidak jadi membeli, masukkan 0 pada komponen yang ingin dibeli!\n");
+        printf("Komponen yang ingin dibeli: ");
+        scanf("%d", &beli);
+        if(beli != 0){
+            // user membeli barang
+            while(beli < 1 || beli > 40){
+            printf("Tolong pilih komponen yang tersedia di toko!\n");
+            printf("Komponen yang ingin dibeli: ");
+            scanf("%d", &beli);
+            }
+            printf("\n");
+            printf("Masukkan jumlah yang ingin dibeli: ");
+            scanf("%d", &jumlah);
+            printf("\n");
+
+            // cek apakah saldo mencukupi komponen yang ingin dibeli 
+            komponen = Get(*shop, beli-1);
+            totalharga = ((Harga(komponen)) * jumlah);
+            if (totalharga <= *saldo) // uang mencukupi
+            {
+                // cek apakah komponen sudah ada
+                if (DoesComponentExist(*Inventory, komponen) > -1)
+                /* komponen sudah ada di inventory */
+                {
+                    // menambahkan komponen yang sudah ada
+                    Jumlah(komponen) = Jumlah(komponen) + jumlah; /* coba di tes, jalan ato ngga */
+                }
+                else 
+                {   
+                    // menambahkan komponen baru
+                    InsertLast(Inventory, komponen, jumlah);
+                }
+                printf("Komponen berhasil dibeli!\n");
+                *saldo -= totalharga;
+            }
+            else 
+            {
+                printf ("Uang tidak cukup!\n");
+            }
+        } else {
+            ("Anda telah keluar dari shop!\n");
+    }
+
+        
     }
     else
     {
         printf ("Toko sedang kosong\n"); 
     }
 
-    printf("Komponen yang ingin dibeli: ");
-    scanf("%d", &beli);
-    while(beli < 1 || beli > 40){
-        printf("Tolong pilih komponen yang tersedia di toko!\n");
-        printf("Komponen yang ingin dibeli: ");
-        scanf("%d", &beli);
-    }
-    printf("\n");
-    printf("Masukkan jumlah yang ingin dibeli: ");
-    scanf("%d", &jumlah);
-    printf("\n");
-
-    // cek apakah saldo mencukupi komponen yang ingin dibeli 
-    komponen = Get(*shop, beli-1);
-    totalharga = ((Harga(komponen)) * jumlah);
-    if (totalharga <= *saldo) // uang mencukupi
-    {
-        // cek apakah komponen sudah ada
-        if (DoesComponentExist(*Inventory, komponen) > -1)
-        /* komponen sudah ada di inventory */
-        {
-            // menambahkan komponen yang sudah ada
-            Jumlah(komponen) = Jumlah(komponen) + jumlah; /* coba di tes, jalan ato ngga */
-        }
-        else 
-        {   
-            // menambahkan komponen baru
-            InsertLast(Inventory, komponen, jumlah);
-        }
-        printf("Komponen berhasil dibeli!\n");
-        *saldo -= totalharga;
-    }
-    else 
-    {
-        printf ("Uang tidak cukup!\n");
-    }
     
 }
 
@@ -371,10 +385,10 @@ void FinishBuild(Stack Inventory, Order order, List* InventoryPlayer, boolean* s
         else{
             printf("Pesanan %d telah selesai. Silahkan antar ke pelanggan %d!\n",order.NoPesanan,order.Pemesan);
             Komponen Build;
-            // char* namapesanan;
-            // asprintf(&namapesanan, "Build untuk pesanan #%d", NomorOrder(order)); /* alokasi nama order */
-            CreateComponent(&Build, "Build untuk Pesanan XX", 9, Invoice(order), 1, Pemesan(order));
-            // free(namapesanan); /* dealokasi nama order */
+            char* namapesanan;
+            asprintf(&namapesanan, "Build untuk pesanan #%d", NomorOrder(order)); /* alokasi nama order */
+            CreateComponent(&Build, namapesanan, 9, Invoice(order), 1, Pemesan(order));
+            free(namapesanan); /* dealokasi nama order */
             InsertLast(InventoryPlayer, Build, 1);
             (*startbuild) = true;
         }
@@ -515,6 +529,7 @@ void MapPlayer (MATRIX M, POINT player)
     }
 }
 
+//  gcc -o testmain mainprogram.c graf/graf.c komponen/komponen.c listdinamis/listdinamispoint.c listdinamis/listardin.c matrix/mapmatrix.c mesinkata/mesinkata.c order/order.c point/point.c queue/Queue.c stack/stack.c mesinkar/mesinkar.c command/command.c
 
 int main(){
     // INISIALISASI VARIABEL PENTING DALAM GAME
@@ -561,7 +576,7 @@ int main(){
     CreateEmptyMap(&Map, NB, NK); /* membuat map berdasarkan ukuran file konfigurasi */
     ListPointtoMatrix(listpoint, &Map); /* memasukkan koordinat ke map */
     
-    // PrintMap(Map, Player); /* dikit lagi bener */
+    // PrintMap(Map, Player); /* lolos uji */
     CreateGraph(&Graf, JumlahGedung); /* membuat graf dengan ukuran jumlahgedung x jumlahgedung */
     BacaFilekeMatriks(JumlahGedung,&ReadGraf);
     ConvertMatrixToGraph(ReadGraf, &Graf);
@@ -577,60 +592,66 @@ int main(){
         Enqueue(&QPesanan, O);
         i++;
     }
-    
+    // MAIN PROGRAM
     while(!EndGame){
-        // Game awal 
-        Kata Command;
+       char command[25];
         printf("ENTER COMMAND:");
-        Command = BacaKataDariCLI();
+        scanf("%s", command);
+        system("clear");
         
-        if(isSamaKata(Command, MOVE)){
+        
+        if(strcmp(command, MOVE.TabKata) == 0){
             Move(&Player, Graf, listpoint);
-        } else if(isSamaKata(Command, STATUS)){
+        } else if(strcmp(command, STATUS.TabKata) == 0){
             Status(SaldoPlayer, QPesanan, PlayerInventory, Player, listpoint, StartedBuild); 
-        } else if(isSamaKata(Command, CHECKORDER)){
+        } else if(strcmp(command, CHECKORDER.TabKata) == 0){
             CheckOrder(QPesanan);
-        } else if(isSamaKata(Command, ADDCOMPONENT)){
+        } else if(strcmp(command, ADDCOMPONENT.TabKata) == 0){
             if(!StartedBuild){
                 //  build belum dilakukan
                 printf("Kamu belum melakukan build! Silakan lakukan STARTBUILD!\n");
             } else {
             AddComponent(&Build, &PlayerInventory);
             }
-        } else if(isSamaKata(Command, REMOVECOMPONENT)){
+        } else if(strcmp(command, REMOVECOMPONENT.TabKata) == 0){
             if(!StartedBuild){
                 //  build belum dilakukan
                 printf("Kamu belum melakukan build! Silakan lakukan STARTBUILD!\n");
             } else {
                 RemoveComponent(&Build, &PlayerInventory);
             }
-        } else if(isSamaKata(Command, SHOP)){
-            Shop(&ShopList, &PlayerInventory, &SaldoPlayer);
-        } else if(isSamaKata(Command, DELIVER)){
+        } else if(strcmp(command, SHOP.TabKata) == 0){
+            if((Player.X == listpoint.A[1].X) && (Player.Y == listpoint.A[1].Y)){
+                Shop(&ShopList, &PlayerInventory, &SaldoPlayer);
+            } else {
+                printf("Kamu belum berada di Shop! Silakan lakukan move terlebih dahulu ke SHOP!\n");
+            }
+        } else if(strcmp(command, DELIVER.TabKata) == 0){
             Deliver(Player, Pemesan(InfoHead(QPesanan)), listpoint, &PlayerInventory, &QPesanan, &SaldoPlayer);
-        } else if (isSamaKata(Command, END_DAY)){
+        } else if (strcmp(command, END_DAY.TabKata) == 0){
             if(StartedBuild){
                 printf("Kamu belum menyelesaikan build! Silakan selesaikan build terlebih dahulu!\n");
             } else {
                 End_Day(&QPesanan, ShopList, JumlahGedung-2);
             }    
-        }else if(isSamaKata(Command, STARTBUILD)){
+        }else if(strcmp(command, STARTBUILD.TabKata) == 0){
             StartBuild(listpoint, Player, QPesanan, &StartedBuild, &Build);
-        }else if (isSamaKata(Command, FINISHBUILD)){
+        }else if (strcmp(command, FINISHBUILD.TabKata) == 0){
             if(!StartedBuild){
                 //  build belum dilakukan
                 printf("Kamu belum melakukan build! Silakan lakukan STARTBUILD!\n");
             } else {
                 FinishBuild(Build,InfoHead(QPesanan),&PlayerInventory, &StartedBuild);
             }
-        } else if(isSamaKata(Command, MAP)){
+        } else if(strcmp(command, MAP.TabKata) == 0){
             MapPlayer(Map, Player);
             printf("\n");
-        } else if(isSamaKata(Command, EXIT)){
+        } else if(strcmp(command, EXIT.TabKata) == 0){
             EndGame = true;
         } else {
             printf("Command tidak valid! Masukkan command yang valid!\n");
         }
+        
     }
 }
 
