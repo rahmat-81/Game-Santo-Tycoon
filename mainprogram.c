@@ -71,14 +71,14 @@ void Shop (List* shop, List* Inventory, int* saldo)
     ListEl komponen;
 
     /* Print komponen yang tersedia di shop */ 
-    
+    printf("Komponen yang tersedia: \n");
     if ((*shop).Neff > 0)
     {
         
         IdxType iteration = 0;
         if (Length(*shop) != 0)
         {   
-            printf("Komponen yang tersedia: \n");
+            // printf("Komponen yang tersedia: \n");
             while (iteration < Length(*shop))
             {
                 printf("%d. %s - $%d\n", iteration+1, Nama((*shop).A[iteration]), Harga((*shop).A[iteration])); 
@@ -388,9 +388,9 @@ void FinishBuild(Stack Inventory, Order order, List* InventoryPlayer, boolean* s
             char* namapesanan;
             asprintf(&namapesanan, "Build untuk pesanan #%d", NomorOrder(order)); /* alokasi nama order */
             CreateComponent(&Build, namapesanan, 9, Invoice(order), 1, Pemesan(order));
-            free(namapesanan); /* dealokasi nama order */
+            //free(namapesanan); /* dealokasi nama order */
             InsertLast(InventoryPlayer, Build, 1);
-            (*startbuild) = true;
+            (*startbuild) = false;
         }
     }
     
@@ -580,7 +580,7 @@ int main(){
     CreateGraph(&Graf, JumlahGedung); /* membuat graf dengan ukuran jumlahgedung x jumlahgedung */
     BacaFilekeMatriks(JumlahGedung,&ReadGraf);
     ConvertMatrixToGraph(ReadGraf, &Graf);
-    // PrintGraph(Graf);
+    PrintGraph(Graf);
     // PrintGraph(Graf); /* lolos uji */
 
     // PERSIAPAN GAME
@@ -597,7 +597,7 @@ int main(){
        char command[25];
         printf("ENTER COMMAND:");
         scanf("%s", command);
-        system("clear");
+        system("cls");
         
         
         if(strcmp(command, MOVE.TabKata) == 0){
@@ -627,7 +627,13 @@ int main(){
                 printf("Kamu belum berada di Shop! Silakan lakukan move terlebih dahulu ke SHOP!\n");
             }
         } else if(strcmp(command, DELIVER.TabKata) == 0){
-            Deliver(Player, Pemesan(InfoHead(QPesanan)), listpoint, &PlayerInventory, &QPesanan, &SaldoPlayer);
+            if (StartedBuild){
+                printf("Kamu belum menyelesaikan Build, silakan menyelesaikan Build terlebih dahulu.\n");
+            }
+            else{
+                Deliver(Player, Pemesan(InfoHead(QPesanan)), listpoint, &PlayerInventory, &QPesanan, &SaldoPlayer);
+            }
+            
         } else if (strcmp(command, END_DAY.TabKata) == 0){
             if(StartedBuild){
                 printf("Kamu belum menyelesaikan build! Silakan selesaikan build terlebih dahulu!\n");
