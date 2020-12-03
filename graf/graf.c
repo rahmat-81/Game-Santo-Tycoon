@@ -83,7 +83,7 @@ void NeighborsList(AdjacencyMATRIX G, int Vertex)
                 printf("%d. Shop\n", nomor_depan);
             }
             else{
-                printf("%d.  Pelanggan %d\n", nomor_depan, i-1);
+                printf("%d. Pelanggan %d\n", nomor_depan, i-1);
             }
             
             nomor_depan++;

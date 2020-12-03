@@ -88,25 +88,32 @@ void BacaFilekeMatriks(int JumlahGedung, MATRIX *M){
         for(j=0; j<JumlahGedung; j++){
             char el = CC;
             Elmt(*M, i, j) = el;
-            if (j!= JumlahGedung-1 && j!= JumlahGedung-1){
-                ADVNEW();
+            ADVNEW();
             }
             
         }
     }
-}
+
 
 Kata BacaKataDariCLI(){
-   Kata C;
+    Kata C;
     char cc;
+    char cnew[20];
     scanf("%c",&cc);
     int i=0;
-    while (cc != '\n'){
+    while ((cc != '\n')){
         C.TabKata[i]=cc;
         i++;
         scanf("%c",&cc);
     }
     C.Length=i;
+    // cc = C.TabKata[i-1];
+    // for(int j = 0; j <C.Length; j++){
+    //     cnew[i] = C.TabKata[i];
+    // }
+    //     for(int j = 0; j <C.Length; j++){
+    //     C.TabKata[i] = cnew[i];
+    // }
     return C;
 }
 
