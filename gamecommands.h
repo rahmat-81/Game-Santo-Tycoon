@@ -12,7 +12,6 @@
 #include "point/point.h"
 #include "queue/Queue.h"
 #include "stack/stack.h"
-#include "command/command.h"
 #include <string.h>
 
 void InisiasiCommand();
