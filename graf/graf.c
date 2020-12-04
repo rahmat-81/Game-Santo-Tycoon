@@ -68,7 +68,7 @@ boolean IsConnected(AdjacencyMATRIX G, int Vertex1, int Vertex2)
     return Edges(G, Vertex1, Vertex2) > 0;
 }
 
-void NeighborsList(AdjacencyMATRIX G, int Vertex)
+void NeighborsList(AdjacencyMATRIX G, int Vertex, int* jumlahneighbor)
 /* menunjukkan jalan yang dapat dituju dari vertex tersebut */
 {
     int i, nomor_depan;
@@ -89,6 +89,7 @@ void NeighborsList(AdjacencyMATRIX G, int Vertex)
             nomor_depan++;
         }
     }
+    *jumlahneighbor = nomor_depan - 1;
     printf("\n");
 }
 

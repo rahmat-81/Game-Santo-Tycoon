@@ -30,7 +30,7 @@ void RemoveEdge(AdjacencyMATRIX *G, int Vertex1, int Vertex2);
 boolean IsConnected(AdjacencyMATRIX G, int Vertex1, int Vertex2);
 /* menunjukkan apakah vertex 1 dan vertex 2 terhubung */
 
-void NeighborsList(AdjacencyMATRIX G, int Vertex);
+void NeighborsList(AdjacencyMATRIX G, int Vertex, int* jumlahneighbor);
 /* menunjukkan jalan yang dapat dituju dari vertex tersebut */
 
 void PrintGraph(AdjacencyMATRIX G);

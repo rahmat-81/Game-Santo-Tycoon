@@ -32,7 +32,7 @@ Order GenerateOrder(List inventory, int JmlOrang)
         InsertLast(&pesanan, RandomComponent, Jumlah(RandomComponent));
     }
     int no_pemesan = rand()%JmlOrang + 1;
-    int harga_pesanan = TotalHarga + rand()%900; /* ambil keuntungan max $899 setiap order */
+    int harga_pesanan = TotalHarga + rand()%500 + 400; /* ambil keuntungan max $899 setiap order */
     CreateOrder(&newOrder, no_pemesan, pesanan, harga_pesanan);
     return newOrder;
 

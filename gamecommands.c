@@ -193,14 +193,17 @@ void Shop (List* shop, List* Inventory, int* saldo)
         }
         printf("Jika tidak jadi membeli, masukkan 0 pada komponen yang ingin dibeli!\n");
         printf("Komponen yang ingin dibeli: ");
-        scanf("%d", &beli);
-        if(beli != 0){
-            // user membeli barang
-            while(beli < 1 || beli > 40){
+        char strpilihan[25];
+        scanf("%s",&strpilihan);
+        int beli = ConvertStringtoInt(strpilihan);
+        while(beli < 0 || beli > 40){
             printf("Tolong pilih komponen yang tersedia di toko!\n");
             printf("Komponen yang ingin dibeli: ");
-            scanf("%d", &beli);
-            }
+            scanf("%s",&strpilihan);
+            beli = ConvertStringtoInt(strpilihan);
+        }
+        if(beli != 0){
+            // user membeli barang
             printf("\n");
             printf("Masukkan jumlah yang ingin dibeli: ");
             scanf("%d", &jumlah);
@@ -254,11 +257,15 @@ void AddComponent(Stack *S, List* Inventory){
         PrintList(*Inventory);
         if(!IsStackFull(*S)){
         printf("Komponen yang ingin dipasang: ");
-        scanf("%d", &pilihan);
+        char strpilihan[25];
+        scanf("%s",&strpilihan);
+        int pilihan = ConvertStringtoInt(strpilihan);
+        // scanf("%d", &pilihan);
         while(pilihan > Length(*Inventory) || pilihan < 1){
             printf("Komponen tidak valid!\n");
             printf("Komponen yang ingin dipasang: ");
-            scanf("%d", &pilihan);
+            scanf("%s",&strpilihan);
+            pilihan = ConvertStringtoInt(strpilihan);
         }
         printf("\n");
         pasang = Get(*Inventory, pilihan-1);
@@ -506,6 +513,7 @@ void Move (POINT* player, AdjacencyMATRIX Graf, ListPoint Point){
     boolean found = false;
     int i = 0;
     
+    // MENCARI POSISI PLAYER PADA LISTPOINT
     while (!found && i < LengthPoint(Point)) {
         if ((*player).X == Point.A[i].X && (*player).Y == Point.A[i].Y) {
             found = true;
@@ -530,10 +538,18 @@ void Move (POINT* player, AdjacencyMATRIX Graf, ListPoint Point){
         }
         
     }
-    NeighborsList(Graf,i); /* i adalah posisi kita sekarang */
+    // MENUNJUKKAN TEMPAT YANG DAPAT DIKUNJUNGI OLEH PLAYER
+    int jumlahneighbor;
+    NeighborsList(Graf,i, &jumlahneighbor); /* i adalah posisi kita sekarang */
     printf("Nomor tujuan: ");
-    int pilihan;
-    scanf("%d",&pilihan);
+    char strpilihan[25];
+    scanf("%s",&strpilihan);
+    int pilihan = ConvertStringtoInt(strpilihan);
+    while (pilihan > jumlahneighbor || pilihan < 1){
+        printf("Masukan tidak valid! Nomor tujuan: ");
+        scanf("%s",&strpilihan);
+        pilihan = ConvertStringtoInt(strpilihan);
+    }
     int j;
     int nomor_depan = 1;
     
@@ -573,9 +589,16 @@ void StartBuild (ListPoint listpoint, POINT Player, Queue order, boolean* startb
         }
         else
         {
-        CreateEmptyStack(newbuild);
-        (*startbuild) = true;
-        printf ("Kamu telah memulai pesanan %d untuk pelanggan %d.\n", NomorOrder(InfoHead(order)), Pemesan(InfoHead(order)));
+            if(!*startbuild){
+                CreateEmptyStack(newbuild);
+                (*startbuild) = true;
+                printf ("Kamu telah memulai pesanan %d untuk pelanggan %d.\n", NomorOrder(InfoHead(order)), Pemesan(InfoHead(order)));
+            } else {
+                // penanganan sudah melakukan build lalu mulai lagi
+                printf("Kamu sudah memulai build untuk pelanggan %d.\n", NomorOrder(InfoHead(order)), Pemesan(InfoHead(order)));
+            }
+        
+        
         }
     } else {
         printf("Kamu belum berada di Base! Silakan lakukan MOVE ke base agar dapat melakukan build!\n");

@@ -58,4 +58,5 @@ void MembuatGedung(int JumlahGedung,ListPoint *list);
 void BacaFilekeMatriks(int JumlahGedung, MATRIX *M);
 Kata BacaKataDariCLI();
 boolean isSamaKata(Kata Kata1, Kata Kata2);
+int ConvertStringtoInt(char* str);
 #endif
