@@ -94,7 +94,7 @@ int main(){
             printf("5. CHECKORDER\n");
             printf("6. ADDCOMPONENT\n");
             printf("7. REMOVECOMPONENT\n");
-            printf("7. SHOP\n");
+            printf("8. SHOP\n");
             printf("9. DELIVER\n");
             printf("10. END_DAY\n");
             printf("11. MAP\n");
@@ -168,6 +168,7 @@ int main(){
                 } else {
                     // tidak ada build yang dilakukan
                     End_Day(&QPesanan, ShopList, JumlahGedung-2);
+                    printf("SELAMAT PAGI ! Silakan memulai hari baru dengan order baru !\n");
                 }    
             }else if(strcmp(command, STARTBUILD.TabKata) == 0){
                 // FUNGSI STARTBUILD
