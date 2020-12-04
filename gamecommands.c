@@ -207,6 +207,10 @@ void Shop (List* shop, List* Inventory, int* saldo)
             printf("\n");
             printf("Masukkan jumlah yang ingin dibeli: ");
             scanf("%d", &jumlah);
+            while (jumlah < 1){
+                printf("Masukkan jumlah yang valid!: ");
+                scanf("%d", &jumlah);
+            }
             printf("\n");
 
             // cek apakah saldo mencukupi komponen yang ingin dibeli 

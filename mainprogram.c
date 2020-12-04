@@ -180,8 +180,12 @@ int main(){
                     //  build belum dilakukan
                     printf("Kamu belum melakukan build! Silakan lakukan STARTBUILD!\n");
                 } else {
+                    if((Player.X == listpoint.A[0].X) && (Player.Y == listpoint.A[0].Y)){
                     // build sudah dilakukan, melakukan pengecekan build
-                    FinishBuild(Build,InfoHead(QPesanan),&PlayerInventory, &StartedBuild);
+                        FinishBuild(Build,InfoHead(QPesanan),&PlayerInventory, &StartedBuild);
+                    } else {
+                        printf("Kamu belum berada di Base! Silakan lakukan MOVE ke Base!\n");
+                    }
                 }
 
             } else if(strcmp(command, MAP.TabKata) == 0){
@@ -200,8 +204,23 @@ int main(){
                 printf("Setelah Pak Santo lulus, beliau pun memutuskan untuk membuka toko komputer saja karena\n");
                 printf("sudah terlanjur kehilangan minat terhadap dunia pemrograman.\n\n");
                 printf("Kamu akan bermain sebagai Pak Santo, dan akan menjalankan toko komputernya!\n");
-                printf("Kamu dapat melakukan banyak kegiatan seperti berjalan menuju toko, membuat PC, memasang komponen\n");
-                printf("berbelanja dan lain-lain!\n");
+                printf("Kamu dapat melakukan banyak kegiatan seperti berjalan menuju toko, membuat komputer, memasang komponen\n");
+                printf("berbelanja dan lain-lain!\n\n");
+                printf("FUNGSI DARI SETIAP COMMAND: \n");
+                printf("1. MOVE         : Memungkinkan player untuk berpindah dari satu tempat ke tempat yang lain, jika tempat tersebut terhubung dengan jalan.\n");
+                printf("2. STATUS       : Menampilkan status player saat ini, seperti saldo, build yang dikerjakan, posisi, dan inventory player.\n");
+                printf("3. STARTBUILD   : Memulai merakit komputer. Hanya dapat dilakukan saat player berada di Base. \n");
+                printf("4. FINISHBUILD  : Menyelesaikan perakitan komputer. Hanya dapat dilakukan saat build sesuai pesanan dan player berada di Base.\n");
+                printf("5. CHECKORDER   : Memeriksa order yang masuk ke toko player. Menampilkan nomor order, pemesan, invoice, dan daftar komponen yang diinginkan.\n");
+                printf("6. ADDCOMPONENT : Memasang komponen ke rakitan komputer. Hanya dapat dilakukan di Base.\n");
+                printf("7. REMOVECOMPONENT: Melepas komponen dari rakitan komputer. Hanya dapat dilakukan di Base. \n");
+                printf("8. SHOP         : Berbelanja komponen yang tersedia di toko. Hanya dapat dilakukan saat player berada di Shop.\n");
+                printf("9. DELIVER      : Mengantarkan pesanan komputer ke pemesan yang bersangkutan.\n");
+                printf("10. END_DAY     : Mengganti hari dengan orderan baru.\n");
+                printf("11. MAP         : Menampilkan peta.\n");
+                printf("12. EXIT        : Keluar dari Game\n");
+                printf("13. MANUAL      : Menunjukkan tutorial ini.\n");
+                
             }else {
                 // COMMAND YANG TIDAK VALID
                 printf("Command tidak valid! Masukkan command yang valid!\n");
