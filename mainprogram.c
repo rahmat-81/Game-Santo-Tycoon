@@ -8,10 +8,18 @@
 int main(){
     UiAwal();
     boolean NewGame = false;
-    char choose;
-    printf("Start a new game? ... (y/n):");
-    scanf("%c", &choose);
-    if(choose == 'y' || choose == 'Y'){
+    char choose[4];
+    printf("[  ] ++++++++++++++++MAIN MENU++++++++++++++++ [  ]\n");
+    printf(" ||                                             ||\n");
+    printf(" ||                                             ||\n");
+    printf(" ||                >> PLAY GAME                 ||\n");
+    printf(" ||                >> EXIT GAME                 ||\n");
+    printf(" ||                                             ||\n");
+    printf(" ||                                             ||\n");
+    printf("[  ] +++++++++++++++SANTO TYCOON++++++++++++++ [  ]\n");
+    printf("ENTER COMMAND (PLAY/EXIT): ");
+    scanf("%s", &choose);
+    if(strcmp(choose, "PLAY") == 0){
         NewGame = true;
     } else {
         NewGame = false;
@@ -125,7 +133,11 @@ int main(){
                     printf("Kamu belum melakukan build! Silakan lakukan STARTBUILD!\n");
                 } else {
                     //  build sudah dilakukakn
-                    RemoveComponent(&Build, &PlayerInventory);
+                    if(Player.X == listpoint.A[0].X && Player.Y == listpoint.A[0].Y){
+                        RemoveComponent(&Build, &PlayerInventory);
+                    } else {
+                        printf("Silakan lakukan Remove Component di Base!\n");
+                    }      
                 }
             } else if(strcmp(command, SHOP.TabKata) == 0){
                 // FUNGSI SHOP
