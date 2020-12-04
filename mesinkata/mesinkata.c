@@ -3,6 +3,7 @@
 #include "../point/point.h"
 #include "../listdinamis/listdinamispoint.h"
 #include "../matrix/mapmatrix.h"
+#include "string.h"
 
 boolean EndKata;
 Kata CKata;
@@ -35,6 +36,14 @@ int BacaInteger(){
         ADV();
     }
     return i;
+}
+
+int ConvertStringtoInt(char* str){
+    int result=0;
+    for (int i=0;i<strlen(str);i++){
+        result=result*10+ChartoInt(str[i]);
+    }
+    return result;
 }
 void SalinKataPoint(){
     int i=0;
