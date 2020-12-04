@@ -73,7 +73,7 @@ void NeighborsList(AdjacencyMATRIX G, int Vertex, int* jumlahneighbor)
 {
     int i, nomor_depan;
     nomor_depan = 1;
-    printf("Daftar lokasi yang dapat dicapai:\n", Vertex);
+    printf("Daftar lokasi yang dapat dicapai:\n");
     for(i = 0; i < NBVertex(G); i++){
         if(Edges(G, i, Vertex) > 0){
             if (i==0){

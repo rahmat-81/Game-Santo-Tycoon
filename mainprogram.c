@@ -112,7 +112,11 @@ int main(){
                     printf("Kamu belum melakukan build! Silakan lakukan STARTBUILD!\n");
                 } else {
                     // build sudah dilakukan
-                AddComponent(&Build, &PlayerInventory);
+                    if(Player.X == listpoint.A[0].X && Player.Y == listpoint.A[0].Y){
+                        AddComponent(&Build, &PlayerInventory);
+                    } else {
+                        printf("Silakan lakukan Add Component di Base!\n");
+                    }
                 }
             } else if(strcmp(command, REMOVECOMPONENT.TabKata) == 0){
                 //  FUNGSI STARTBUILD
@@ -128,6 +132,7 @@ int main(){
                 if((Player.X == listpoint.A[1].X) && (Player.Y == listpoint.A[1].Y)){
                     //  posisi player sudah ada di shop
                     Shop(&ShopList, &PlayerInventory, &SaldoPlayer);
+                    // system("cls||clear");
                 } else {
                     //  posisi player belum berada di shop
                     printf("Kamu belum berada di Shop! Silakan lakukan move terlebih dahulu ke SHOP!\n");
