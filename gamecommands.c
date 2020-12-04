@@ -234,7 +234,7 @@ void Shop (List* shop, List* Inventory, int* saldo)
                 printf ("Uang tidak cukup!\n");
             }
         } else {
-            ("Anda telah keluar dari shop!\n");
+            printf("Anda telah keluar dari shop!\n");
     }
 
         
@@ -498,7 +498,7 @@ void FinishBuild(Stack Inventory, Order order, List* InventoryPlayer, boolean* s
             printf("Pesanan %d telah selesai. Silahkan antar ke pelanggan %d!\n",order.NoPesanan,order.Pemesan);
             Komponen Build;
             char* namapesanan;
-            asprintf(&namapesanan, "Build untuk pesanan #%d", NomorOrder(order)); /* alokasi nama order */
+            printf("%s", &namapesanan, "Build untuk pesanan #%d", NomorOrder(order)); /* alokasi nama order */
             CreateComponent(&Build, namapesanan, 9, Invoice(order), 1, Pemesan(order));
             //free(namapesanan); /* dealokasi nama order */
             InsertLast(InventoryPlayer, Build, 1);
