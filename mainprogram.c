@@ -8,7 +8,7 @@
 int main(){
     UiAwal();
     boolean NewGame = false;
-    char choose[4];
+    char choose[10];
     printf("[  ] ++++++++++++++++MAIN MENU++++++++++++++++ [  ]\n");
     printf(" ||                                             ||\n");
     printf(" ||                                             ||\n");
@@ -231,7 +231,7 @@ int main(){
                 printf("13. MANUAL      : Menunjukkan tutorial ini.\n");
                 
             }else if(strcmp(command, "SAVE") == 0){
-                // Save(SaldoPlayer, QPesanan, PlayerInventory, Player, listpoint, StartedBuild); 
+                Save2(SaldoPlayer, QPesanan, PlayerInventory, Player, listpoint, StartedBuild); 
                 Save(SaldoPlayer, &QPesanan, PlayerInventory, Player,ShopList);}
             else {
                 // COMMAND YANG TIDAK VALID

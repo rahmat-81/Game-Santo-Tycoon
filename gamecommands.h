@@ -32,5 +32,6 @@ void StartBuild (ListPoint listpoint, POINT Player, Queue order, boolean* startb
 void MapPlayer (MATRIX M, POINT player);
 // void Save(int Saldo, Queue Order, List Inventory, POINT player, ListPoint Point, boolean startedbuild);
 void Save(int Saldo, Queue *Order, List Inventory, POINT player,List Shop);
+void Save2(int Saldo, Queue Order, List Inventory, POINT player, ListPoint Point, boolean startedbuild);
 void Load(int *Saldo, Queue *Orde, List *Inventory, POINT *player,List Shop);
 #endif

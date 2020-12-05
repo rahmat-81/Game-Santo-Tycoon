@@ -661,75 +661,68 @@ void MapPlayer (MATRIX M, POINT player)
     }
 }
 
-// void Save(int Saldo, Queue Order, List Inventory, POINT player, ListPoint Point, boolean startedbuild) {
-//     char str[25];
-//     printf("Lokasi save file:");
-//     scanf("%s",&str);
-//     printf("%s",str);
-//     printf("\n");
-//     FILE * fp;
-//     fp = fopen ("text.txt","w");
-//     char* diprint;
-//     asprintf(&diprint, "Uang tersisa: $%d\n", Saldo); 
-//     fprintf(fp,"%s",diprint);
-//     fprintf(fp,"%s","Build yang sedang dikerjakan: ");
-//     if(!startedbuild){
-//         fprintf(fp,"%s","Belum ada\n");
-//     } else {
-//         asprintf(&diprint,"Pesanan %d untuk Pelanggan %d\n", NomorOrder(InfoHead(Order)), Pemesan(InfoHead(Order))); 
-//         fprintf(fp,"%s",diprint);
-//     }
-//     fprintf(fp,"%s","Lokasi: Pemain sedang berada pada ");
-//     boolean found = false;
-//     int i = 0;
-    
-//     while (!found && i < LengthPoint(Point)) {
-//         if (player.X == Point.A[i].X && player.Y == Point.A[i].Y) {
-//             found = true;
-//         }
-//         else
-//         {
-//             i++;
-//         }
-        
-//     }
-
-//     if (found) {
-//         if (i==0) {
-//             fprintf(fp,"%s","Base\n");
-//         }
-//         else if (i==1) {
-//             fprintf(fp,"%s","Shop\n");
-//         }
-//         else
-//         {
-//             asprintf(&diprint,"Gedung %d\n", i-1);
-//             fprintf(fp,"%s",diprint);
-//         }
-        
-//     }
-
-//     fprintf(fp,"%s","Inventory Anda:\n");
-//     IdxType iteration = 0;
-//     if(Length(Inventory) != 0){
-//         while(iteration < Length(Inventory)){
-//             asprintf(&diprint, "%d. %s (%d)\n", iteration+1, Nama(Inventory.A[iteration]), Jumlah(Inventory.A[iteration])); 
-//             fprintf(fp,"%s",diprint);
-//             iteration++;
-//         }
-//     } else {
-//         fprintf(fp,"%s","Kosong\n");
-//     }
-//     printf("Game berhasil di save!\n");
-//     fclose(fp);
-// }
-
-void Save(int Saldo, Queue *Order, List Inventory, POINT player,List Shop){
+void Save2(int Saldo, Queue Order, List Inventory, POINT player, ListPoint Point, boolean startedbuild) {
     char str[25];
     printf("Lokasi save file:");
     scanf("%s",&str);
-    printf("%s",str);
-    printf("\n");
+    FILE * fp;
+    fp = fopen (str,"w");
+    char* diprint;
+    asprintf(&diprint, "Uang tersisa: $%d\n", Saldo); 
+    fprintf(fp,"%s",diprint);
+    fprintf(fp,"%s","Build yang sedang dikerjakan: ");
+    if(!startedbuild){
+        fprintf(fp,"%s","Belum ada\n");
+    } else {
+        asprintf(&diprint,"Pesanan %d untuk Pelanggan %d\n", NomorOrder(InfoHead(Order)), Pemesan(InfoHead(Order))); 
+        fprintf(fp,"%s",diprint);
+    }
+    fprintf(fp,"%s","Lokasi: Pemain sedang berada pada ");
+    boolean found = false;
+    int i = 0;
+    
+    while (!found && i < LengthPoint(Point)) {
+        if (player.X == Point.A[i].X && player.Y == Point.A[i].Y) {
+            found = true;
+        }
+        else
+        {
+            i++;
+        }
+        
+    }
+
+    if (found) {
+        if (i==0) {
+            fprintf(fp,"%s","Base\n");
+        }
+        else if (i==1) {
+            fprintf(fp,"%s","Shop\n");
+        }
+        else
+        {
+            asprintf(&diprint,"Gedung %d\n", i-1);
+            fprintf(fp,"%s",diprint);
+        }
+        
+    }
+
+    fprintf(fp,"%s","Inventory Anda:\n");
+    IdxType iteration = 0;
+    if(Length(Inventory) != 0){
+        while(iteration < Length(Inventory)){
+            asprintf(&diprint, "%d. %s (%d)\n", iteration+1, Nama(Inventory.A[iteration]), Jumlah(Inventory.A[iteration])); 
+            fprintf(fp,"%s",diprint);
+            iteration++;
+        }
+    } else {
+        fprintf(fp,"%s","Kosong\n");
+    }
+    printf("Game berhasil di save!\n");
+    fclose(fp);
+}
+
+void Save(int Saldo, Queue *Order, List Inventory, POINT player,List Shop){
     FILE * fp;
     fp = fopen ("saldo.txt","w");
     fprintf(fp,"%d",Saldo);
@@ -742,19 +735,22 @@ void Save(int Saldo, Queue *Order, List Inventory, POINT player,List Shop){
     fprintf(fp,"%c",'|');
     fclose(fp);
     fp = fopen ("order.txt","w");
-    while(!IsQEmpty(*Order)){
-        fprintf(fp,"%d",InfoHead(*Order).HargaInvoice);
+    Queue Qnew;
+    CreateEmpty(&Qnew, 8);
+    CopyQueue(Order,&Qnew);
+    while(!IsQEmpty(Qnew)){
+        fprintf(fp,"%d",InfoHead(Qnew).HargaInvoice);
         fprintf(fp,"%s","|\n");
         for(int i=0;i<8;i++){
-            fprintf(fp,"%d",Search(InfoHead(*Order).ListKomponen.A[i].NamaBarang,Shop));
+            fprintf(fp,"%d",Search(InfoHead(Qnew).ListKomponen.A[i].NamaBarang,Shop));
             fprintf(fp,"%s","|");
         }
-        fprintf(fp,"%d",InfoHead(*Order).NoPesanan);
+        fprintf(fp,"%d",InfoHead(Qnew).NoPesanan);
         fprintf(fp,"%c",'|');
-        fprintf(fp,"%d",InfoHead(*Order).Pemesan);
+        fprintf(fp,"%d",InfoHead(Qnew).Pemesan);
         fprintf(fp,"%s","|\n");
         QInfo X;
-        Dequeue(Order,&X);
+        Dequeue(&Qnew,&X);
     }
     fprintf(fp,"%c",';');
     fclose(fp);

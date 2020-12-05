@@ -29,7 +29,7 @@ void CreateEmpty (Queue *Q, int Max);
 void DeAlokasi (Queue *Q);
 void Enqueue (Queue * Q, QInfo X);
 void Dequeue (Queue *Q, QInfo* X);
-
+void CopyQueue(Queue *Qin,Queue *Qout);
 
 
 #endif

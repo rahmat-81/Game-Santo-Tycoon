@@ -75,4 +75,17 @@ void Dequeue(Queue *Q, QInfo *X) {
     }
 }
 
+void CopyQueue(Queue *Qin,Queue *Qout){
+    Queue QNew;
+    CreateEmpty(&QNew, 8);
+    QInfo X;
+    while(!IsQEmpty(*Qin))
+    {
+        Dequeue(Qin,&X);
+        Enqueue(Qout,X);
+        Enqueue(&QNew,X);
+    }
+    *Qin=QNew;
+}
+
 
