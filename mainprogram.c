@@ -231,7 +231,7 @@ int main(){
                 printf("13. MANUAL      : Menunjukkan tutorial ini.\n");
                 
             }else if(strcmp(command, "SAVE") == 0){
-                Save2(SaldoPlayer, QPesanan, PlayerInventory, Player, listpoint, StartedBuild); 
+                // Save2(SaldoPlayer, QPesanan, PlayerInventory, Player, listpoint, StartedBuild); 
                 Save(SaldoPlayer, &QPesanan, PlayerInventory, Player,ShopList);}
             else {
                 // COMMAND YANG TIDAK VALID
