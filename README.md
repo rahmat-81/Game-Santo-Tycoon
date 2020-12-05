@@ -1,1 +1,2 @@
 # Game-Santo-Tycoon
+gcc -o SantoTycoon mainprogram.c graf/graf.c komponen/komponen.c listdinamis/listdinamispoint.c listdinamis/listardin.c matrix/mapmatrix.c mesinkata/mesinkata.c order/order.c point/point.c queue/Queue.c stack/stack.c mesinkar/mesinkar.c gamecommands.c
