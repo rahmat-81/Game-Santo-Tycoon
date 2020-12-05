@@ -23,6 +23,13 @@ int main(){
     if(strcmp(choose, "NEW_GAME") == 0){
         NewGame = true;
     }else if(strcmp(choose, "LOAD_GAME") == 0){
+        printf("Apakah kamu tahu lokasi save file ? (y/n) :");
+        char charcc[2];
+        scanf("%s", &charcc);
+        printf("\n");
+        if (strcmp(charcc, "n")==0) {
+            strcpy(choose, "NEW_GAME");
+        }
         NewGame = true;
     } else {
         NewGame = false;
