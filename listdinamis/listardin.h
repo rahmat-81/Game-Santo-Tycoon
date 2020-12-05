@@ -62,4 +62,5 @@ void DeleteComponent(List* L, ListEl X);
 /* menghapus komponen list */
 
 boolean DoesBuildExists(List *L, ListEl *X);
+int Search(char* test,List list);
 #endif

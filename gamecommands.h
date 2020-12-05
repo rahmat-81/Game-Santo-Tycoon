@@ -31,5 +31,6 @@ void Move (POINT* player, AdjacencyMATRIX Graf, ListPoint Point);
 void StartBuild (ListPoint listpoint, POINT Player, Queue order, boolean* startbuild, Stack* newbuild);
 void MapPlayer (MATRIX M, POINT player);
 // void Save(int Saldo, Queue Order, List Inventory, POINT player, ListPoint Point, boolean startedbuild);
-void Save(int Saldo, Queue *Order, List Inventory, POINT player);
+void Save(int Saldo, Queue *Order, List Inventory, POINT player,List Shop);
+void Load(int *Saldo, Queue *Orde, List *Inventory, POINT *player,List Shop);
 #endif

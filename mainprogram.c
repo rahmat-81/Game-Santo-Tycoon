@@ -12,14 +12,17 @@ int main(){
     printf("[  ] ++++++++++++++++MAIN MENU++++++++++++++++ [  ]\n");
     printf(" ||                                             ||\n");
     printf(" ||                                             ||\n");
-    printf(" ||                >> PLAY GAME                 ||\n");
-    printf(" ||                >> EXIT GAME                 ||\n");
+    printf(" ||                >> NEW_GAME                  ||\n");
+    printf(" ||                >> LOAD_GAME                 ||\n");
+    printf(" ||                >> EXIT_GAME                 ||\n");
     printf(" ||                                             ||\n");
     printf(" ||                                             ||\n");
     printf("[  ] +++++++++++++++SANTO TYCOON++++++++++++++ [  ]\n");
-    printf("ENTER COMMAND (PLAY/EXIT): ");
+    printf("ENTER COMMAND: ");
     scanf("%s", &choose);
-    if(strcmp(choose, "PLAY") == 0){
+    if(strcmp(choose, "NEW_GAME") == 0){
+        NewGame = true;
+    }else if(strcmp(choose, "LOAD_GAME") == 0){
         NewGame = true;
     } else {
         NewGame = false;
@@ -56,7 +59,7 @@ int main(){
         // PEMBACAAN FILE KONFIGURASI
 
         InisiasiCommand();
-        START();
+        START("map.txt");
         int NB = BacaInteger(); /* BACA BARIS UKURAN MAP */
         ADV();
         int NK = BacaInteger(); /* BACA KOLOM UKURAN MAP */
@@ -66,7 +69,8 @@ int main(){
         ListPoint listpoint = MakeListPoint(JumlahGedung); /* MEMBUAT LIST OF KOORDINAT GEDUNG */
         MembuatGedung(JumlahGedung,&listpoint);
         /* inisialisasi posisi awal player */
-        Player = listpoint.A[0]; /* player ada di base pada awal mula game */
+        if(strcmp(choose, "NEW_GAME") == 0){
+        Player = listpoint.A[0]; /* player ada di base pada awal mula game */}
         CreateEmptyMap(&Map, NB, NK); /* membuat map berdasarkan ukuran file konfigurasi */
         ListPointtoMatrix(listpoint, &Map); /* memasukkan koordinat ke map */
         
@@ -74,7 +78,7 @@ int main(){
         BacaFilekeMatriks(JumlahGedung,&ReadGraf);
         ConvertMatrixToGraph(ReadGraf, &Graf);
         CLOSE();
-
+        if(strcmp(choose, "NEW_GAME") == 0){
         // PERSIAPAN GAME
         int i = 0;
         
@@ -83,6 +87,9 @@ int main(){
             Order O = GenerateOrder(ShopList, JumlahGedung-2);
             Enqueue(&QPesanan, O);
             i++;
+        }}
+        else{
+            Load(&SaldoPlayer, &QPesanan, &PlayerInventory, &Player,ShopList);
         }
         // MAIN PROGRAM
         while(!EndGame){
@@ -99,8 +106,9 @@ int main(){
             printf("9. DELIVER\n");
             printf("10. END_DAY\n");
             printf("11. MAP\n");
-            printf("12. EXIT\n");
-            printf("13. MANUAL\n");
+            printf("12. SAVE\n");
+            printf("13. EXIT\n");
+            printf("14. MANUAL\n");
             printf("ENTER COMMAND:");
             scanf("%s", command);
             system("cls || clear");
@@ -222,7 +230,10 @@ int main(){
                 printf("12. EXIT        : Keluar dari Game\n");
                 printf("13. MANUAL      : Menunjukkan tutorial ini.\n");
                 
-            }else {
+            }else if(strcmp(command, "SAVE") == 0){
+                // Save(SaldoPlayer, QPesanan, PlayerInventory, Player, listpoint, StartedBuild); 
+                Save(SaldoPlayer, &QPesanan, PlayerInventory, Player,ShopList);}
+            else {
                 // COMMAND YANG TIDAK VALID
                 printf("Command tidak valid! Masukkan command yang valid!\n");
             }

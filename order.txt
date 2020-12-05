@@ -1,72 +1,17 @@
-4122
-275|1|1|Motherboard Mini ITX|0
-450|1|2|Ryzeng 7 2900X|0
-65|1|3|Kingstool 16GB DDR4 2600 MHz|0
-100|1|4|Cooler Mister MasterAir|0
-45|1|5|Imperial Fortress 303 RGB|0
-2200|1|6|NVDIA RTX 3090Ti|0
-99|1|7|Seaglare Barracuda 250GB|0
-70|1|8|Corseer PSU 600W|0
-2026
-200|1|1|Motherboard ATX|0
-450|1|2|Ryzeng 7 2900X|0
-45|1|3|VGan 4GB DDR3 2133 MHz|0
-70|1|4|Cooler Mister Silent Cooler|0
-170|1|5|NZXT H510i|0
-90|1|6|AMJ RX 5600M|0
-99|1|7|Seaglare Barracuda 250GB|0
-70|1|8|Panascanic PSU 500W|0
-4476
-250|1|1|Motherboard Micro-ATX|0
-900|1|2|Apple Silicca|0
-65|1|3|Kingstool 16GB DDR4 2600 MHz|0
-70|1|4|Aigoo DarkFlash Cooler|0
-30|1|5|Fantich PULSE CG71|0
-2200|1|6|NVDIA RTX 3090Ti|0
-99|1|7|Seaglare Barracuda 250GB|0
-70|1|8|ThermalGive PSU 550W|0
-1839
-275|1|1|Motherboard Mini ITX|0
-450|1|2|Ryzeng 7 2900X|0
-60|1|3|HyperVTX 8GB DDR4 3200 MHz|0
-70|1|4|Cooler Mister Silent Cooler|0
-170|1|5|NZXT H510i|0
-90|1|6|AMJ RX 5600M|0
-60|1|7|VGan HDD 1TB|0
-70|1|8|ThermalGive PSU 550W|0
-3826
-200|1|1|Motherboard ATX|0
-450|1|2|Ryzeng 7 2900X|0
-75|1|3|Sumsang 8GB DDR4 3200 MHz|0
-70|1|4|Aigoo DarkFlash Cooler|0
-30|1|5|Fantich PULSE CG71|0
-2000|1|6|AMJ RX580|0
-60|1|7|VGan HDD 1TB|0
-70|1|8|Armagendong PSU 600W|0
-2532
-300|1|1|Motherboard E-ATX|0
-700|1|2|Intol i9 9800HK|0
-150|1|3|Kingston 16GB DDR4|0
-95|1|4|Cooler Mister Master Liquid|0
-170|1|5|NZXT H510i|0
-460|1|6|AMJ RX 5600XT|0
-60|1|7|VGan HDD 1TB|0
-70|1|8|ThermalGive PSU 550W|0
-1513
-275|1|1|Motherboard Mini ITX|0
-75|1|2|Intol Pentium Trio|0
-45|1|3|VGan 4GB DDR3 2133 MHz|0
-70|1|4|Cooler Mister Silent Cooler|0
-8|1|5|Simbanda|0
-90|1|6|AMJ RX 5600M|0
-95|1|7|Kingstool 500GB SATA|0
-70|1|8|ThermalGive PSU 550W|0
-2411
-300|1|1|Motherboard E-ATX|0
-400|1|2|Ryzeng 5 4500X|0
-45|1|3|VGan 4GB DDR3 2133 MHz|0
-70|1|4|Cooler Mister Silent Cooler|0
-8|1|5|Simbanda|0
-460|1|6|AMJ RX 5600XT|0
-230|1|7|Sumsang EVO 980 1TB|0
-70|1|8|Cooler Mister CX PSU 600W|0
+4534|
+1|9|10|19|22|25|31|35|24|1|
+3812|
+1|6|11|19|20|28|31|35|13|6|
+2491|
+3|9|10|15|23|29|32|36|0|6|
+3981|
+4|5|14|15|20|25|32|37|1|4|
+3389|
+1|8|10|15|21|25|34|36|31|2|
+2003|
+2|5|10|17|22|26|30|35|26|7|
+1811|
+4|8|10|15|20|27|34|38|3|6|
+3827|
+1|7|11|17|20|25|31|36|16|1|
+;

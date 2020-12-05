@@ -1,6 +1,7 @@
 #include "listardin.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "string.h"
 
 List MakeList() 
 /* I.S. sembarang
@@ -195,4 +196,19 @@ boolean DoesBuildExists(List *L, ListEl* X){
     } else {
         return false;
     }
+}
+
+int Search(char* test,List list){
+    boolean found=false;
+    int i=0;
+    int result=0;
+    while(found==false && i<list.Neff){
+        if (strcmp(test,list.A[i].NamaBarang)==0){
+            found=true;
+            result=i;
+            
+        }
+        i++;
+    }
+    return result;
 }
