@@ -19,10 +19,10 @@ ADV();
 } /* CC != BLANK */
 }
 
-void INITAKSES(){
-    START();
-    IgnoreBlank();
-}
+// void INITAKSES(){
+//     START();
+//     IgnoreBlank();
+// }
 
 void ADVNEW(){
     ADV();
@@ -37,7 +37,14 @@ int BacaInteger(){
     }
     return i;
 }
-
+int BacaIntegerLOAD(){
+    int i=0;
+    while(CC != BLANK && CC !='|'){
+        i=i*10+ChartoInt(CC);
+        ADV();
+    }
+    return i;
+}
 int ConvertStringtoInt(char* str){
     int result=0;
     for (int i=0;i<strlen(str);i++){

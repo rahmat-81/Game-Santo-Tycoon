@@ -30,5 +30,6 @@ void FinishBuild(Stack Inventory, Order order, List* InventoryPlayer, boolean* s
 void Move (POINT* player, AdjacencyMATRIX Graf, ListPoint Point);
 void StartBuild (ListPoint listpoint, POINT Player, Queue order, boolean* startbuild, Stack* newbuild);
 void MapPlayer (MATRIX M, POINT player);
-
+// void Save(int Saldo, Queue Order, List Inventory, POINT player, ListPoint Point, boolean startedbuild);
+void Save(int Saldo, Queue *Order, List Inventory, POINT player);
 #endif

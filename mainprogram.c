@@ -73,6 +73,7 @@ int main(){
         CreateGraph(&Graf, JumlahGedung); /* membuat graf dengan ukuran jumlahgedung x jumlahgedung */
         BacaFilekeMatriks(JumlahGedung,&ReadGraf);
         ConvertMatrixToGraph(ReadGraf, &Graf);
+        CLOSE();
 
         // PERSIAPAN GAME
         int i = 0;
@@ -202,7 +203,9 @@ int main(){
                 printf("Kamu akan bermain sebagai Pak Santo, dan akan menjalankan toko komputernya!\n");
                 printf("Kamu dapat melakukan banyak kegiatan seperti berjalan menuju toko, membuat PC, memasang komponen\n");
                 printf("berbelanja dan lain-lain!\n");
-            }else {
+            
+            }
+            else {
                 // COMMAND YANG TIDAK VALID
                 printf("Command tidak valid! Masukkan command yang valid!\n");
             }

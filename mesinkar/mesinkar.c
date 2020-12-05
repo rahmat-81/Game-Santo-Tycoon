@@ -6,10 +6,10 @@ boolean EOP;
 static FILE *pita;
 static int retval;
 
-void START() {
+void START(char* str) {
 /* Mesin siap dioperasikan. Pita disiapkan ... */
 /* Algoritma */
-    pita = fopen("map.txt","r");
+    pita = fopen(str,"r");
     ADV();
 }
 void ADV() {
@@ -21,3 +21,7 @@ void ADV() {
     fclose(pita);
 }
 }
+void CLOSE(){
+    fclose(pita);
+}
+
